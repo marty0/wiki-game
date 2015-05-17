@@ -25,3 +25,7 @@ c:\users\chany\documents\visual studio 2012\Projects\WikiGame_SP\WikiGame_SP\bin
 c:\users\chany\documents\visual studio 2012\Projects\WikiGame_SP\WikiGame_SP\bin\System.Web.WebPages.Razor.xml
 c:\users\chany\documents\visual studio 2012\Projects\WikiGame_SP\WikiGame_SP\obj\Debug\WikiGame_SP.dll
 c:\users\chany\documents\visual studio 2012\Projects\WikiGame_SP\WikiGame_SP\obj\Debug\WikiGame_SP.pdb
+c:\users\chany\documents\visual studio 2012\Projects\WikiGame_SP\WikiGame_SP\bin\HtmlAgilityPack.dll
+c:\users\chany\documents\visual studio 2012\Projects\WikiGame_SP\WikiGame_SP\bin\HtmlAgilityPack.pdb
+c:\users\chany\documents\visual studio 2012\Projects\WikiGame_SP\WikiGame_SP\bin\HtmlAgilityPack.xml
+c:\users\chany\documents\visual studio 2012\Projects\WikiGame_SP\WikiGame_SP\obj\Debug\WikiGame.csprojResolveAssemblyReference.cache

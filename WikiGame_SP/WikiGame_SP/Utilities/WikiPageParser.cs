@@ -34,6 +34,17 @@ namespace WikiGame.Utilities
 
                 if (bodyNode != null)
                 {
+                    if (String.IsNullOrEmpty(categoryName))
+                    {
+                        hasWon = false;
+                    }
+                    else
+                    {
+                        HtmlNode title = htmlDoc.DocumentNode.SelectNodes("//h1[@id='firstHeading']")[0];
+
+                        hasWon = HasAWinningWord(title.InnerText, categoryName);
+                    }
+
 
                     foreach (HtmlNode link in htmlDoc.DocumentNode.SelectNodes("//a[@href]"))
                     {
@@ -50,5 +61,21 @@ namespace WikiGame.Utilities
             return "";
         }
 
+
+        private bool HasAWinningWord(string title, string categoryName)
+        {
+            bool hasWon = false;
+
+            string[] titleWords = title.ToLower().Split(' ');
+
+            var intersect = titleWords.Intersect(catProvider.GetCategoryByName(categoryName).KeyWords);
+
+            if (intersect.Count() == 0)
+                hasWon = false;
+            else
+                hasWon = true;
+
+            return hasWon;
+        }
     }
 }
