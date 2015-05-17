@@ -1,0 +1,13 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<h2>
+    Wiki Game</h2>
+@using (Html.BeginForm("Index", "GameWindow"))
+{ 
+    
+    @Html.DropDownList("CategoryID", (IEnumerable<SelectListItem>)ViewBag.Categories)  
+    
+    <input type="submit" value="PLAY" />
+}
