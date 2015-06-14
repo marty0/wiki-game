@@ -8,6 +8,10 @@ using System.IO;
 using System.Text;
 using WikiGame.Utilities;
 using WikiGame.Models;
+using System.Web.Security;
+using WikiGame_SP.Models;
+using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
 
 namespace WikiGame.Controllers
 {
@@ -28,6 +32,8 @@ namespace WikiGame.Controllers
             UserInformation userInfo = new UserInformation();
             userInfo.CategoryName = CategoryID;
             System.Web.HttpContext.Current.Session["UserInfo"] =userInfo;
+            System.Web.HttpContext.Current.Session["moves"] = 0;
+            System.Web.HttpContext.Current.Session["time"] = DateTime.Now;
             //Utilities.LoggedUsersInformation.GetUserInfoFor(User.Identity.Name).CategoryName = CategoryID;
             return View();
         }
@@ -54,9 +60,35 @@ namespace WikiGame.Controllers
 
             bool hasWon = false;
             UserInformation userInfo = (UserInformation)System.Web.HttpContext.Current.Session["UserInfo"];
+            System.Web.HttpContext.Current.Session["moves"] = (int)System.Web.HttpContext.Current.Session["moves"] + 1;
+            
             var page = wikiPageParser.GetContent(streamResponse, userInfo.CategoryName, out hasWon);
 
             @ViewBag.hasWon = hasWon;
+            if (hasWon)
+            {
+                TimeSpan timeElapsed = DateTime.Now - (DateTime)System.Web.HttpContext.Current.Session["time"];
+                double time = timeElapsed.TotalSeconds;
+                int points = (int)System.Web.HttpContext.Current.Session["moves"];
+                //int points = (int)time * (int)System.Web.HttpContext.Current.Session["moves"];
+                MembershipUser user = Membership.GetUser(false);
+                if (user != null)
+                {
+                    Entities db = new Entities();
+                    Point point = new Point();
+                    point.userId = user.ProviderUserKey.ToString();
+                    point.points = points;
+                    //point = point;
+                    ViewBag.position = db.Points.Count(p => p.points <= points) + 1;
+                    db.Points.Add(point);
+                    
+                    db.SaveChanges();
+
+
+
+                }
+
+            }
             @ViewBag.wiki_page = new HtmlString(page);
 
             return View("Game");

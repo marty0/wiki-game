@@ -2,8 +2,18 @@
     ViewBag.Title = "Home Page";
 }
 
-<h2>
-    Wiki Game</h2>
+<h2>Wiki Game</h2>
+<p> 
+    @{
+        if (ViewBag.loggedIn)
+        {
+            ViewBag.links = Html.ActionLink("Log out", "LogOff", "Account");
+        }
+        else{
+            ViewBag.links = Html.ActionLink("Log in", "LogOn", "Account");
+        }    
+    }
+    @ViewBag.links</p>
 @using (Html.BeginForm("Index", "GameWindow"))
 { 
     

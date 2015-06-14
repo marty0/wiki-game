@@ -146,7 +146,7 @@ namespace WikiGame.Models
 
             GameCategory cat1 = new GameCategory();
             cat1.Name = "Game Mode Easy";
-            cat1.KeyWords.AddRange(new string[] { "a", "an", "of", "the" });
+            cat1.KeyWords.AddRange(new string[] { "a", "an", "of", "the", "and","for","on" });
 
 
             this.AddCategory(cat0);
