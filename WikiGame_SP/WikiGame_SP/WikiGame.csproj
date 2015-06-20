@@ -153,6 +153,8 @@
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\GameCategory.cs" />
     <Compile Include="Models\ICategoryProvider.cs" />
+    <Compile Include="Models\Multiplayer\Game.cs" />
+    <Compile Include="Models\Multiplayer\Player.cs" />
     <Compile Include="Models\Point.cs">
       <DependentUpon>PointsModel.tt</DependentUpon>
     </Compile>
