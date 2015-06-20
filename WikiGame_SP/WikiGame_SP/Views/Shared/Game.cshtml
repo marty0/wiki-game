@@ -3,13 +3,17 @@
 }
 
 @Html.CSS("wiki-styles.css")
+@Html.CSS("Site.css")
+@Html.CSS("bootstrap.min.css")
+
 <div id="won">
     @if (ViewBag.hasWon)
     {
-        <text>You Won!!!!</text>
-        <p>Your score is @ViewBag.moves</p>
-        <p>Your rank is @ViewBag.position</p>
-        
+        <div class="alert alert-success" role="alert">
+            <p>You Won!</p>
+            <p>Your score is @ViewBag.moves</p>
+            <p>Your rank is @ViewBag.position</p>
+        </div>
     }
 </div>
 <div id="wiki_page">

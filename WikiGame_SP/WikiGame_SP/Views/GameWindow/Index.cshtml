@@ -1,12 +1,18 @@
-﻿
-<iframe src="@Url.Content("~/GameWindow/NewGame")" width="1000px" height="900px">
-    <p2>Something went wrong..</p2>
-</iframe>
+﻿<div class="page-header">
+    <h1>Wiki game <small>Learn while you have fun</small></h1>
+</div>
+<div class="row">
+    <div class="col-md-2 col-md-offset-1">
+        <iframe src="@Url.Content("~/GameWindow/NewGame")" width="1000" height="768">
+            <p2>Something went wrong..</p2>
+        </iframe>
+    </div>
+</div>
 
 @*<script type="text/javascript">
-    var article_ = "Special:Random";
-    $.getJSON(Site.getPathToAction("WikiPage","GameWindow"), { article: article_ }, function (json) {
-        $("#wiki_page").html(json);
-    });
+        var article_ = "Special:Random";
+        $.getJSON(Site.getPathToAction("WikiPage","GameWindow"), { article: article_ }, function (json) {
+            $("#wiki_page").html(json);
+        });
 
-</script>*@
+    </script>*@

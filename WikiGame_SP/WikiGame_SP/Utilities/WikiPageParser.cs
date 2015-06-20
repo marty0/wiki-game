@@ -10,7 +10,7 @@ namespace WikiGame.Utilities
 {
     public class WikiPageParser
     {
-        private static readonly string PAGE_LINK = VirtualPathUtility.ToAbsolute("~") + "GameWindow/WikiPage?article=";
+        private static readonly string PAGE_LINK = VirtualPathUtility.ToAbsolute("~") + "/GameWindow/WikiPage?article=";
         private ICategoryProvider catProvider;
 
         public WikiPageParser(Models.ICategoryProvider catProvider)

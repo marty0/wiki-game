@@ -71,28 +71,28 @@ namespace WikiGame.Controllers
                 double time = timeElapsed.TotalSeconds;
                 int points = (int)System.Web.HttpContext.Current.Session["moves"];
                 //int points = (int)time * (int)System.Web.HttpContext.Current.Session["moves"];
-                MembershipUser user = Membership.GetUser(false);
-                Entities db = new Entities();
-                if (user != null)
-                {
+                //MembershipUser user = Membership.GetUser(false);
+                //Entities db = new Entities();
+                //if (user != null)
+                //{
 
-                    Point point = new Point();
-                    point.userId = user.ProviderUserKey.ToString();
-                    point.points = points;
-                    //point = point;
-                    ViewBag.position = db.Points.Count(p => p.points <= points) + 1;
-                    db.Points.Add(point);
+                //    Point point = new Point();
+                //    point.userId = user.ProviderUserKey.ToString();
+                //    point.points = points;
+                //    //point = point;
+                //    ViewBag.position = db.Points.Count(p => p.points <= points) + 1;
+                //    db.Points.Add(point);
 
-                    db.SaveChanges();
+                //    db.SaveChanges();
 
 
 
-                }
-                else
-                {
-                    ViewBag.position = db.Points.Count(p => p.points <= points) + 1;
-                }
-                ViewBag.moves = points;
+                //}
+                //else
+                //{
+                //    ViewBag.position = db.Points.Count(p => p.points <= points) + 1;
+                //}
+                //ViewBag.moves = points;
             }
             @ViewBag.wiki_page = new HtmlString(page);
 

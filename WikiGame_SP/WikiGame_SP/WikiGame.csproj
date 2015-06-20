@@ -153,6 +153,10 @@
     <Compile Include="Utilities\WikiPageParser.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\bootstrap-theme.css" />
+    <Content Include="Content\bootstrap-theme.min.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
@@ -208,11 +212,16 @@
     <Content Include="Content\themes\base\minified\jquery.ui.tabs.min.css" />
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
     <Content Include="Content\wiki-styles.css" />
+    <Content Include="fonts\font-awesome-4.2.0\css\font-awesome.css" />
+    <Content Include="fonts\font-awesome-4.2.0\css\font-awesome.min.css" />
+    <Content Include="fonts\font-awesome-4.2.0\fonts\fontawesome-webfont.svg" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <EntityDeploy Include="Models\PointsModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>PointsModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
+    <Content Include="Icon.png" />
     <Content Include="Models\PointsModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>PointsModel.edmx</DependentUpon>
@@ -226,15 +235,60 @@
       <DependentUpon>PointsModel.edmx</DependentUpon>
       <LastGenOutput>PointsModel.cs</LastGenOutput>
     </Content>
-    <None Include="Scripts\jquery-1.7.1.intellisense.js" />
-    <Content Include="Scripts\jquery-1.7.1.js" />
-    <Content Include="Scripts\jquery-1.7.1.min.js" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\bootstrap-theme.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="fonts\font-awesome-4.2.0\.DS_Store" />
+    <Content Include="fonts\font-awesome-4.2.0\fonts\fontawesome-webfont.eot" />
+    <Content Include="fonts\font-awesome-4.2.0\fonts\fontawesome-webfont.ttf" />
+    <Content Include="fonts\font-awesome-4.2.0\fonts\fontawesome-webfont.woff" />
+    <Content Include="fonts\font-awesome-4.2.0\fonts\FontAwesome.otf" />
+    <Content Include="fonts\font-awesome-4.2.0\less\bordered-pulled.less" />
+    <Content Include="fonts\font-awesome-4.2.0\less\core.less" />
+    <Content Include="fonts\font-awesome-4.2.0\less\fixed-width.less" />
+    <Content Include="fonts\font-awesome-4.2.0\less\font-awesome.less" />
+    <Content Include="fonts\font-awesome-4.2.0\less\icons.less" />
+    <Content Include="fonts\font-awesome-4.2.0\less\larger.less" />
+    <Content Include="fonts\font-awesome-4.2.0\less\list.less" />
+    <Content Include="fonts\font-awesome-4.2.0\less\mixins.less" />
+    <Content Include="fonts\font-awesome-4.2.0\less\path.less" />
+    <Content Include="fonts\font-awesome-4.2.0\less\rotated-flipped.less" />
+    <Content Include="fonts\font-awesome-4.2.0\less\spinning.less" />
+    <Content Include="fonts\font-awesome-4.2.0\less\stacked.less" />
+    <Content Include="fonts\font-awesome-4.2.0\less\variables.less" />
+    <Content Include="fonts\font-awesome-4.2.0\scss\font-awesome.scss" />
+    <Content Include="fonts\font-awesome-4.2.0\scss\_bordered-pulled.scss" />
+    <Content Include="fonts\font-awesome-4.2.0\scss\_core.scss" />
+    <Content Include="fonts\font-awesome-4.2.0\scss\_fixed-width.scss" />
+    <Content Include="fonts\font-awesome-4.2.0\scss\_icons.scss" />
+    <Content Include="fonts\font-awesome-4.2.0\scss\_larger.scss" />
+    <Content Include="fonts\font-awesome-4.2.0\scss\_list.scss" />
+    <Content Include="fonts\font-awesome-4.2.0\scss\_mixins.scss" />
+    <Content Include="fonts\font-awesome-4.2.0\scss\_path.scss" />
+    <Content Include="fonts\font-awesome-4.2.0\scss\_rotated-flipped.scss" />
+    <Content Include="fonts\font-awesome-4.2.0\scss\_spinning.scss" />
+    <Content Include="fonts\font-awesome-4.2.0\scss\_stacked.scss" />
+    <Content Include="fonts\font-awesome-4.2.0\scss\_variables.scss" />
+    <None Include="Scripts\jquery-1.9.1.intellisense.js" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\jquery-1.9.1.js" />
+    <Content Include="Scripts\jquery-1.9.1.min.js" />
+    <Content Include="Scripts\jquery-1.9.1.min.map" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery-ui-1.8.12.js" />
+    <Content Include="Scripts\jquery-ui-1.8.12.min.js" />
     <Content Include="Scripts\jquery-ui-1.8.20.js" />
     <Content Include="Scripts\jquery-ui-1.8.20.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\modernizr-1.7.js" />
+    <Content Include="Scripts\modernizr-1.7.min.js" />
     <Content Include="Scripts\modernizr-2.5.3.js" />
+    <Content Include="Scripts\npm.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -271,6 +325,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\images\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -296,7 +351,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>59724</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:1337/</IISUrl>
+          <IISUrl>http://localhost:1337/Wiki/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
