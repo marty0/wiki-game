@@ -30,7 +30,7 @@
         <div id="LogOff">
             @if (Request.IsAuthenticated)
             {
-                <strong>@User.Identity.Name</strong>
+                <strong id="Username">@User.Identity.Name</strong>
                 @Html.ActionLink("[LogOff]",
                      "LogOff",
                 "Account")
