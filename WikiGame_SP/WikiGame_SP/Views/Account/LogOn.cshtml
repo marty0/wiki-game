@@ -64,8 +64,9 @@
                                             @Html.ValidationMessageFor(m => m.UserName)
                                         </div>
 
-                                        <div class="col-md-5 nopadding">
-                                            <input type="submit" class="col-md-5 btn btn-primary btn-lg btn-block" value="Login">
+                                        <div class="nopadding">
+                                            <input type="submit" class="col-md-2 btn btn-primary btn-lg btn-block" value="Login">
+                                            <a class="col-md-2 btn btn-primary btn-lg btn-block" href="@Url.Action("Register", "Account")">Register</a>
                                         </div>
                                     </fieldset>
 
