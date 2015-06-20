@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Linq;
 using System.Web.Mvc;
 using WikiGame.Models;
 using System.Web.Security;
@@ -11,6 +8,7 @@ namespace WikiGame.Controllers
     public class HomeController : Controller
     {
         private ICategoryProvider categoryProvider;
+
         public HomeController(ICategoryProvider categoryProvider)
         {
             this.categoryProvider = categoryProvider;
@@ -18,7 +16,6 @@ namespace WikiGame.Controllers
 
         public ActionResult Index()
         {
-            
             MembershipUser user = Membership.GetUser(false);
             if(user != null){
                 ViewBag.loggedIn = true;

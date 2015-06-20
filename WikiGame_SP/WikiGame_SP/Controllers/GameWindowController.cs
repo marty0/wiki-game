@@ -13,7 +13,6 @@ namespace WikiGame.Controllers
 {
     public class GameWindowController : Controller
     {
-        //private static readonly int MAX_BUFF = 1024;
         private static readonly string WIKI_BASE = "http://en.wikipedia.org/wiki/";
         private WikiPageParser wikiPageParser;
 
@@ -21,7 +20,6 @@ namespace WikiGame.Controllers
         {
             wikiPageParser = new WikiPageParser(catProvider);
         }
-
 
         public ActionResult Index(string CategoryID)
         {
@@ -67,7 +65,6 @@ namespace WikiGame.Controllers
             return View("Game");
         }
 
-
         private Stream GetPageStream(string url)
         {
             var myHttpWebRequest = (HttpWebRequest)WebRequest.Create(url);
@@ -105,6 +102,5 @@ namespace WikiGame.Controllers
                 ViewBag.moves = points;
             }
         }
-
     }
 }
