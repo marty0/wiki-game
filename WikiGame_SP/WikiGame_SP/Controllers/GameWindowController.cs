@@ -1,17 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Net;
 using System.IO;
-using System.Text;
 using WikiGame.Utilities;
 using WikiGame.Models;
 using System.Web.Security;
 using WikiGame_SP.Models;
-using System.Data.Entity;
-using System.Data.Entity.Infrastructure;
 
 namespace WikiGame.Controllers
 {
@@ -29,12 +25,12 @@ namespace WikiGame.Controllers
 
         public ActionResult Index(string CategoryID)
         {
-            UserInformation userInfo = new UserInformation();
+            var userInfo = new UserInformation();
             userInfo.CategoryName = CategoryID;
-            System.Web.HttpContext.Current.Session["UserInfo"] =userInfo;
+            System.Web.HttpContext.Current.Session["UserInfo"] = userInfo;
             System.Web.HttpContext.Current.Session["moves"] = 0;
             System.Web.HttpContext.Current.Session["time"] = DateTime.Now;
-            //Utilities.LoggedUsersInformation.GetUserInfoFor(User.Identity.Name).CategoryName = CategoryID;
+
             return View();
         }
 
@@ -42,8 +38,8 @@ namespace WikiGame.Controllers
         {
             var streamResponse = GetPageStream(WIKI_BASE + "Special:Random");
 
-            bool hasWon = false;
-            
+            bool hasWon;
+
             var page = wikiPageParser.GetContent(streamResponse, "", out hasWon);
 
             @ViewBag.hasWon = hasWon;
@@ -54,46 +50,18 @@ namespace WikiGame.Controllers
 
         public ActionResult WikiPage(string article)
         {
-            //logger.Info(Request.UserHostAddress);
-
             var streamResponse = GetPageStream(WIKI_BASE + article);
 
-            bool hasWon = false;
-            UserInformation userInfo = (UserInformation)System.Web.HttpContext.Current.Session["UserInfo"];
+            bool hasWon;
+            var userInfo = (UserInformation)System.Web.HttpContext.Current.Session["UserInfo"];
             System.Web.HttpContext.Current.Session["moves"] = (int)System.Web.HttpContext.Current.Session["moves"] + 1;
-            
+
             var page = wikiPageParser.GetContent(streamResponse, userInfo.CategoryName, out hasWon);
 
             @ViewBag.hasWon = hasWon;
-            if (hasWon)
-            {
-                TimeSpan timeElapsed = DateTime.Now - (DateTime)System.Web.HttpContext.Current.Session["time"];
-                double time = timeElapsed.TotalSeconds;
-                int points = (int)System.Web.HttpContext.Current.Session["moves"];
-                //int points = (int)time * (int)System.Web.HttpContext.Current.Session["moves"];
-                MembershipUser user = Membership.GetUser(false);
-                Entities db = new Entities();
-                if (user != null)
-                {
 
-                    Point point = new Point();
-                    point.userId = user.ProviderUserKey.ToString();
-                    point.points = points;
-                    //point = point;
-                    ViewBag.position = db.Points.Count(p => p.points <= points) + 1;
-                    db.Points.Add(point);
+            SetPoints(hasWon);
 
-                    db.SaveChanges();
-
-
-
-                }
-                else
-                {
-                    ViewBag.position = db.Points.Count(p => p.points <= points) + 1;
-                }
-                ViewBag.moves = points;
-            }
             @ViewBag.wiki_page = new HtmlString(page);
 
             return View("Game");
@@ -102,12 +70,40 @@ namespace WikiGame.Controllers
 
         private Stream GetPageStream(string url)
         {
-            HttpWebRequest myHttpWebRequest = (HttpWebRequest)WebRequest.Create(url);
+            var myHttpWebRequest = (HttpWebRequest)WebRequest.Create(url);
             myHttpWebRequest.UserAgent = ".NET Framework Test Client";
-            HttpWebResponse myHttpWebResponse = (HttpWebResponse)myHttpWebRequest.GetResponse();
-            Stream streamResponse = myHttpWebResponse.GetResponseStream();
+            var myHttpWebResponse = (HttpWebResponse)myHttpWebRequest.GetResponse();
+            var streamResponse = myHttpWebResponse.GetResponseStream();
 
             return streamResponse;
+        }
+
+        private void SetPoints(bool hasWon)
+        {
+            if (hasWon)
+            {
+                var timeElapsed = DateTime.Now - (DateTime)System.Web.HttpContext.Current.Session["time"];
+                double time = timeElapsed.TotalSeconds;
+                int points = (int)System.Web.HttpContext.Current.Session["moves"];
+
+                var user = Membership.GetUser(false);
+                var db = new Entities();
+                if (user != null)
+                {
+                    var point = new Point();
+                    point.userId = user.ProviderUserKey.ToString();
+                    point.points = points;
+                    ViewBag.position = db.Points.Count(p => p.points <= points) + 1;
+                    db.Points.Add(point);
+
+                    db.SaveChanges();
+                }
+                else
+                {
+                    ViewBag.position = db.Points.Count(p => p.points <= points) + 1;
+                }
+                ViewBag.moves = points;
+            }
         }
 
     }

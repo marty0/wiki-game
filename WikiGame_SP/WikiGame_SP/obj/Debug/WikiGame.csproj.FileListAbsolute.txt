@@ -154,4 +154,5 @@ C:\D\University\Masters\Софтуерни технологии - проект\w
 C:\D\University\Masters\Софтуерни технологии - проект\wiki-game\WikiGame_SP\WikiGame_SP\bin\System.Web.WebPages.Razor.xml
 C:\D\University\Masters\Софтуерни технологии - проект\wiki-game\WikiGame_SP\WikiGame_SP\obj\Debug\WikiGame_SP.dll
 C:\D\University\Masters\Софтуерни технологии - проект\wiki-game\WikiGame_SP\WikiGame_SP\obj\Debug\WikiGame_SP.pdb
-C:\D\University\Masters\Софтуерни технологии - проект\wiki-game\WikiGame_SP\WikiGame_SP\obj\Debug\WikiGame.csprojResolveAssemblyReference.cache
+C:\D\University\Masters\Софтуерни технологии - проект\wiki-game\WikiGame_SP\WikiGame_SP\bin\WikiGame_SP.dll.CodeAnalysisLog.xml
+C:\D\University\Masters\Софтуерни технологии - проект\wiki-game\WikiGame_SP\WikiGame_SP\bin\WikiGame_SP.dll.lastcodeanalysissucceeded
