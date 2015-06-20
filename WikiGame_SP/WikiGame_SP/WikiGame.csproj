@@ -154,6 +154,7 @@
     <Compile Include="Models\GameCategory.cs" />
     <Compile Include="Models\ICategoryProvider.cs" />
     <Compile Include="Models\Multiplayer\Game.cs" />
+    <Compile Include="Models\Multiplayer\GameMessage.cs" />
     <Compile Include="Models\Multiplayer\Player.cs" />
     <Compile Include="Models\Point.cs">
       <DependentUpon>PointsModel.tt</DependentUpon>
@@ -380,7 +381,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>59724</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:1337/Wiki/</IISUrl>
+          <IISUrl>http://localhost:1337/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

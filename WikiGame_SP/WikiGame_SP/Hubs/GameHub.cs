@@ -32,6 +32,14 @@
                         StartGame = DateTime.Now,
                         CategoryName = category
                     });
+
+                    var message = new GameMessage
+                    {
+                        Text = "Game started!"
+                    };
+
+                    Clients.Caller.send(message);
+                    Clients.Client(playerOne.ConnectionId).send(message);
                 }
                 else
                 {

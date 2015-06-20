@@ -75,6 +75,7 @@ namespace WikiGame
             base.OnApplicationStarted();
 
             AreaRegistration.RegisterAllAreas();
+
             RegisterGlobalFilters(GlobalFilters.Filters);
             RegisterRoutes(RouteTable.Routes);
             //Logger.Info("Application Started");
