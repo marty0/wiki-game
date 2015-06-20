@@ -40,6 +40,8 @@
 
                     Clients.Caller.send(message);
                     Clients.Client(playerOne.ConnectionId).send(message);
+
+                    GameRooms[category].RemoveAt(0);
                 }
                 else
                 {
@@ -64,7 +66,7 @@
             foreach (var key in Games.Keys)
             {
                 var parts = key.Split('_');
-                
+
                 if (parts[0] == connectionId || parts[1] == connectionId)
                 {
                     Games.Remove(key);
