@@ -40,6 +40,11 @@ namespace WikiGame.Controllers
 
             var page = wikiPageParser.GetContent(streamResponse, "", out hasWon);
 
+            while (hasWon)
+            {
+                page = wikiPageParser.GetContent(streamResponse, "", out hasWon);
+            }
+
             @ViewBag.hasWon = hasWon;
             @ViewBag.wiki_page = new HtmlString(page);
 
@@ -52,7 +57,6 @@ namespace WikiGame.Controllers
 
             bool hasWon;
             var userInfo = (UserInformation)System.Web.HttpContext.Current.Session["UserInfo"];
-            System.Web.HttpContext.Current.Session["moves"] = (int)System.Web.HttpContext.Current.Session["moves"] + 1;
 
             var page = wikiPageParser.GetContent(streamResponse, userInfo.CategoryName, out hasWon);
 
@@ -77,6 +81,8 @@ namespace WikiGame.Controllers
 
         private void SetPoints(bool hasWon)
         {
+            System.Web.HttpContext.Current.Session["moves"] = (int)System.Web.HttpContext.Current.Session["moves"] + 1;
+
             if (hasWon)
             {
                 var timeElapsed = DateTime.Now - (DateTime)System.Web.HttpContext.Current.Session["time"];
