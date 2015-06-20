@@ -1,9 +1,8 @@
 ﻿WikiGame = {
     BindEvents: function () {
         $(document).on("click", "#SeekGame", function () {
-            $("#GamePanel").html("Waiting for an opponent, game will start soon...");
-
             WikiGame.SignalREvents();
+            $("#GamePanel").html("Waiting for an opponent, game will start soon...");
         });
     },
 
@@ -15,11 +14,11 @@
             //$('#message').append(RegistryAgency.CreateMessageElement(message));
         };
 
-        $.connection.hub.start().done(function () {
-            var category = $("#CategoryID").val();
-            var user = $("#Username").text();
-            chat.server.startGame(category, user);
+        var category = $("#CategoryID").val();
+        var user = $("#Username").text();
 
+        $.connection.hub.start().done(function () {
+            chat.server.startGame(category, user);
 
             //$('#SubmitDirectory').click(function () {
             //    $('#message').html('');

@@ -51,5 +51,26 @@
                 GameRooms.Add(category, new List<Player> { newPlayer });
             }
         }
+
+        public override System.Threading.Tasks.Task OnDisconnected(bool stopCalled)
+        {
+            RemoveGameByPlayer(Context.ConnectionId);
+
+            return base.OnDisconnected(stopCalled);
+        }
+
+        private void RemoveGameByPlayer(string connectionId)
+        {
+            foreach (var key in Games.Keys)
+            {
+                var parts = key.Split('_');
+                
+                if (parts[0] == connectionId || parts[1] == connectionId)
+                {
+                    Games.Remove(key);
+                    return;
+                }
+            }
+        }
     }
 }
