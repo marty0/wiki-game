@@ -1,0 +1,19 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>@ViewBag.Title</title>
+    @Html.CSS("Site.css")
+    @Html.Script("jquery-1.5.1.min.js")
+</head>
+<body>
+    <div class="page">
+        <div id="header">
+        </div>
+        <div id="main">
+            @RenderBody()
+        </div>
+        <div id="footer">
+        </div>
+    </div>
+</body>
+</html>

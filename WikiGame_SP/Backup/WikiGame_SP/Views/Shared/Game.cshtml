@@ -1,0 +1,17 @@
+﻿@{
+    Layout = null;
+}
+
+@Html.CSS("wiki-styles.css")
+<div id="won">
+    @if (ViewBag.hasWon)
+    {
+        <text>You Won!!!!</text>
+        <p>Your score is @ViewBag.moves</p>
+        <p>Your rank is @ViewBag.position</p>
+        
+    }
+</div>
+<div id="wiki_page">
+    @ViewBag.wiki_page
+</div>
