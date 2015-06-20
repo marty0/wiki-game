@@ -289,6 +289,7 @@
     <Content Include="Scripts\modernizr-1.7.min.js" />
     <Content Include="Scripts\modernizr-2.5.3.js" />
     <Content Include="Scripts\npm.js" />
+    <Content Include="Scripts\WikiGame.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
