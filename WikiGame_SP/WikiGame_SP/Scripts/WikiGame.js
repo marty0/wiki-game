@@ -18,6 +18,7 @@
             var href = $(this).attr("href");
             $.get(Site.getPathToAction("WikiPage", "GameWindow") + "?article=" + href, function (data) {
                 $("#GamePanel").html(data);
+                window.scrollTo(0, 0);
 
                 if ($("#YouWon").length) {
                     $(document).trigger("has-won-event");
