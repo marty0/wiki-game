@@ -2,6 +2,15 @@
 {
     public class GameMessage
     {
-        public string Text { get; set; }
+        public enum MessageTypes {
+            GameStart,
+            YouLost
+        }
+
+        public MessageTypes Type { get; set; }
+
+        public string Category { get; set; }
+
+        public string GameId { get; set; }
     }
 }

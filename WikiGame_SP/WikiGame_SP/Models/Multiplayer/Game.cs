@@ -13,5 +13,7 @@
         public Player PlayerTwo { get; set; }
 
         public string CategoryName { get; set; }
+
+        public string StartPage { get; set; }
     }
 }

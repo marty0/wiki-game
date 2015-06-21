@@ -8,6 +8,7 @@ using WikiGame.Utilities;
 using WikiGame.Models;
 using System.Web.Security;
 using WikiGame_SP.Models;
+using WikiGame_SP.Hubs;
 
 namespace WikiGame.Controllers
 {
@@ -21,19 +22,26 @@ namespace WikiGame.Controllers
             wikiPageParser = new WikiPageParser(catProvider);
         }
 
-        public ActionResult Index(string CategoryID)
+        public ActionResult Index(string categoryID, string gameId)
         {
             var userInfo = new UserInformation();
-            userInfo.CategoryName = CategoryID;
+            userInfo.CategoryName = categoryID;
             System.Web.HttpContext.Current.Session["UserInfo"] = userInfo;
             System.Web.HttpContext.Current.Session["moves"] = 0;
             System.Web.HttpContext.Current.Session["time"] = DateTime.Now;
 
-            return NewGame();
+            return NewGame(gameId);
         }
 
-        public ActionResult NewGame()
+        public ActionResult NewGame(string gameId)
         {
+            if (!string.IsNullOrWhiteSpace(gameId) && GameHub.Games.ContainsKey(gameId) && !string.IsNullOrWhiteSpace(GameHub.Games[gameId].StartPage))
+            {
+                    @ViewBag.hasWon = false;
+                    @ViewBag.wiki_page = new HtmlString(GameHub.Games[gameId].StartPage);
+                    return View("Game");
+            }
+
             var streamResponse = GetPageStream(WIKI_BASE + "Special:Random");
 
             bool hasWon;
@@ -47,6 +55,11 @@ namespace WikiGame.Controllers
 
             @ViewBag.hasWon = hasWon;
             @ViewBag.wiki_page = new HtmlString(page);
+
+            if (!string.IsNullOrWhiteSpace(gameId) && GameHub.Games.ContainsKey(gameId) && string.IsNullOrWhiteSpace(GameHub.Games[gameId].StartPage))
+            {
+                GameHub.Games[gameId].StartPage = page;
+            }
 
             return View("Game");
         }

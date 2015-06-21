@@ -8,7 +8,7 @@
         $(document).on("click", "#SinglePlayer", function () {
             var category = $("#CategoryID").val();
 
-            $.get(Site.getPathToAction("Index", "GameWindow") + "?CategoryID=" + category, function (data) {
+            $.get(Site.getPathToAction("Index", "GameWindow") + "?categoryID=" + category, function (data) {
                 $("#GamePanel").html(data);
             });
         });
@@ -18,6 +18,10 @@
             var href = $(this).attr("href");
             $.get(Site.getPathToAction("WikiPage", "GameWindow") + "?article=" + href, function (data) {
                 $("#GamePanel").html(data);
+
+                if ($("#YouWon").length) {
+                    $(document).trigger("has-won-event");
+                }
             });
         });
     },
@@ -26,8 +30,18 @@
         var chat = $.connection.gameHub;
 
         chat.client.send = function (message) {
-            alert(message.Text);
-            //$('#message').append(RegistryAgency.CreateMessageElement(message));
+            if (message.Type == 0) { // If it is a start game
+                $("#GamePanel").html("Get ready! Game will start in less than 3 seconds...");
+
+                setTimeout(function () {
+                    $.get(Site.getPathToAction("Index", "GameWindow") + "?categoryID=" + message.Category + "&gameId=" + message.GameId, function (data) {
+                        $("#GamePanel").html(data);
+                    });
+                }, 2500);
+                
+            } else if (message.Type == 1) { // If it is a lost game
+                alert("You fought well, but lost :(")
+            }
         };
 
         var category = $("#CategoryID").val();
@@ -36,22 +50,9 @@
         $.connection.hub.start().done(function () {
             chat.server.startGame(category, user);
 
-            //$('#SubmitDirectory').click(function () {
-            //    $('#message').html('');
-            //    $("#registry-agency-ajax-loader").show();
-            //    $("#StopUpload").show();
-            //    showStatus("Спрете работа по системата докато не завърши качването.", "warning");
-
-            //    chat.server.upload($('#directory').val());
-            //});
-
-            //$('#StopUpload').click(function () {
-            //    $("#registry-agency-ajax-loader").hide();
-            //    $("#StopUpload").hide();
-            //    chat.server.stopUpload();
-
-            //    showStatus("След приключване на качването на последния файл, операцията ще спре...", "warning");
-            //});
+            $(document).on("has-won-event", function () {
+                chat.server.haveWon();
+            })
         });
     }
 }
