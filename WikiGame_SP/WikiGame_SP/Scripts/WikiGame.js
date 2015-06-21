@@ -4,6 +4,22 @@
             WikiGame.SignalREvents();
             $("#GamePanel").html("Waiting for an opponent, game will start soon...");
         });
+
+        $(document).on("click", "#SinglePlayer", function () {
+            var category = $("#CategoryID").val();
+
+            $.get(Site.getPathToAction("Index", "GameWindow") + "?CategoryID=" + category, function (data) {
+                $("#GamePanel").html(data);
+            });
+        });
+
+        $(document).on("click", "#GamePanel a", function (e) {
+            e.preventDefault();
+            var href = $(this).attr("href");
+            $.get(Site.getPathToAction("WikiPage", "GameWindow") + "?article=" + href, function (data) {
+                $("#GamePanel").html(data);
+            });
+        });
     },
 
     SignalREvents: function () {

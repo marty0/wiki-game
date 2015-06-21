@@ -29,7 +29,7 @@ namespace WikiGame.Controllers
             System.Web.HttpContext.Current.Session["moves"] = 0;
             System.Web.HttpContext.Current.Session["time"] = DateTime.Now;
 
-            return View();
+            return NewGame();
         }
 
         public ActionResult NewGame()

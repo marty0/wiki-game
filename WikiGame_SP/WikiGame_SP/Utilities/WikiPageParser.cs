@@ -50,7 +50,7 @@ namespace WikiGame.Utilities
                     {
                         HtmlAttribute att = link.Attributes["href"];
                         if (att.Value.StartsWith("/wiki/"))
-                            att.Value = PAGE_LINK + att.Value.Split('/')[2];
+                            att.Value = att.Value.Split('/')[2];
                         else
                             link.InnerHtml = "";
                     }
