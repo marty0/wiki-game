@@ -18,7 +18,7 @@
     <!-- font-awesome-4.2.0 -->
     <link href="@Url.Content("~/fonts/font-awesome-4.2.0/css/font-awesome.min.css")" rel="stylesheet" type="text/css">
 
-    ><link href="http://fonts.googleapis.com/css?family=PT+Sans:400,700&amp;subset=latin,cyrillic-ext,cyrillic" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=PT+Sans:400,700&amp;subset=latin,cyrillic-ext,cyrillic" rel="stylesheet" type="text/css">
     <link href="http://fonts.googleapis.com/css?family=Roboto:100,200,400,300,500,700,900&amp;subset=latin,cyrillic-ext,cyrillic" rel="stylesheet" type="text/css">
 
     <script src="@Url.Content("~/Scripts/jquery-1.9.1.min.js")"></script>
@@ -64,6 +64,7 @@
                                         <div class="nopadding">
                                             <input type="submit" class="col-md-2 btn btn-primary btn-lg btn-block" value="Login">
                                             <a class="col-md-2 btn btn-primary btn-lg btn-block" href="@Url.Action("Register", "Account")">Register</a>
+                                            <input type="button" class="col-md-2 btn btn-primary btn-lg btn-block" value="Login with Facebook" onclick="loginFB()">
                                         </div>
                                     </fieldset>
 
@@ -80,5 +81,38 @@
     <!-- /#wrapper -->
     <!-- Bootstrap Core JavaScript -->
     <script src="@Url.Content("~/Scripts/bootstrap.min.js")"></script>
+    <!-- Facebook sdk-->
+    <script src="@Url.Content("~/Scripts/sdk.js")"></script>
+    <script>
+        function loginFB() {
+            //if refering to this view after being logged
+            if (FB.getLoginStatus()) {
+                FB.logout();
+            }
+            FB.login(function (response) {
+                if (response.status === 'connected') {
+                    var form = document.createElement("form");
+                    form.setAttribute("method", "POST");
+                    form.setAttribute("action", "@Url.Action("FBLogOn")");
+                    var hiddenField = document.createElement("input");
+                    hiddenField.setAttribute("type", "hidden");
+                    hiddenField.setAttribute("name", "accessToken");
+                    hiddenField.setAttribute("value", response.authResponse.accessToken);
+                    form.appendChild(hiddenField);
+
+                    document.body.appendChild(form);
+                    form.submit();
+                }
+            });
+        }
+        window.fbAsyncInit = function () {
+            FB.init({
+                appId: "@ViewBag.appId",
+                cookie: true,
+                xfbml: true,  // parse social plugins on this page
+                version: 'v2.3'
+            });
+        }
+    </script>
 </body>
 </html>

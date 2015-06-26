@@ -2,6 +2,9 @@
 using System.Web.Mvc;
 using System.Web.Security;
 using WikiGame.Models;
+using System.Configuration;
+using System.IO;
+using System.Net;
 
 namespace WikiGame.Controllers
 {
@@ -13,6 +16,7 @@ namespace WikiGame.Controllers
 
         public ActionResult LogOn()
         {
+            ViewData["appId"] = ConfigurationManager.AppSettings["AppId"];
             return View();
         }
 
@@ -45,6 +49,50 @@ namespace WikiGame.Controllers
 
             // If we got this far, something failed, redisplay form
             return View(model);
+        }
+
+        //
+        // POST: /Account/FBLogOn
+        [HttpPost]
+        public ActionResult FBLogOn(FBLogOnModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                WebRequest request = WebRequest.Create("https://graph.facebook.com/oauth/access_token?client_id=" + ConfigurationManager.AppSettings["AppId"] +
+                    "&client_secret=" + ConfigurationManager.AppSettings["ClientSecret"] +
+                    "&grant_type=fb_exchange_token" +
+                    "&%20fb_exchange_token=" + model.accessToken);
+
+                using (WebResponse response = request.GetResponse())
+                {
+
+                    var responseBody = new StreamReader(response.GetResponseStream()).ReadToEnd();
+                    var longLivedAccessToken = responseBody.Split('&')[0];
+                    longLivedAccessToken = longLivedAccessToken.Split('=')[1];
+                    var client = new Facebook.FacebookClient(longLivedAccessToken);
+                    dynamic me = client.Get("me");
+
+                    if (Membership.ValidateUser(me.email, longLivedAccessToken.Substring(0, 10)))
+                    {
+                        FormsAuthentication.SetAuthCookie(me.email, false /* createPersistentCookie */);
+                        return RedirectToAction("Index", "Home");
+                    }
+
+                    // Attempt to register the user
+                    MembershipCreateStatus createStatus;
+                    //get only the first 10 chars from the token, because it is too long to be password
+                    Membership.CreateUser(me.email, longLivedAccessToken.Substring(0, 10), me.email, null, null, true, null, out createStatus);
+
+                    if (createStatus == MembershipCreateStatus.Success)
+                    {
+                        FormsAuthentication.SetAuthCookie(me.email, false /* createPersistentCookie */);
+                        return RedirectToAction("Index", "Home");
+                    }
+
+                }
+            }
+            // If we got this far, something failed, redisplay form
+            return View();
         }
 
         //
