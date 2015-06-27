@@ -70,4 +70,13 @@ namespace WikiGame.Models
         [Required]
         public string accessToken { get; set; }
     }
+
+    public class PasswordRestorerModel
+    {
+        
+        [Required]
+        [DataType(DataType.EmailAddress)]
+        [Display(Name = "Email address")]
+        public string Email { get; set; }
+    }
 }

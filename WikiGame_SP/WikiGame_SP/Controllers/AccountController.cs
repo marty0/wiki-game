@@ -5,6 +5,7 @@ using WikiGame.Models;
 using System.Configuration;
 using System.IO;
 using System.Net;
+using System.Net.Mail;
 
 namespace WikiGame.Controllers
 {
@@ -194,6 +195,54 @@ namespace WikiGame.Controllers
             return View();
         }
 
+        public ActionResult RestorePassword()
+        {
+            return View();
+        }
+
+        //
+        // POST: /Account/RestorePassword
+
+        [HttpPost]
+        public ActionResult RestorePassword(PasswordRestorerModel model, string returnUrl)
+        {
+            if (ModelState.IsValid)
+            {
+               string username = Membership.GetUserNameByEmail(model.Email);
+               if (username != null)
+               {
+                   var user = Membership.GetUser(username);
+                   string newPass = user.ResetPassword();
+                   try
+                   {
+                       MailMessage mailMessage = new MailMessage();
+                       mailMessage.To.Add(model.Email);
+                       mailMessage.From = new MailAddress("wikigamecustomerservice@gmail.com");
+                       mailMessage.Subject = "Wiki game restore password";
+                       mailMessage.IsBodyHtml = true;
+                       mailMessage.Body = "Hello,</br> this is your new password: " + newPass + "</br> Have a great game at <a target=\"_blank\" href=\"http://localhost:1337/Wiki/\">WikiGame</a>!</br></br>Regards,</br> The Wiki Game Team";
+                       SmtpClient smtp = new SmtpClient();
+                       smtp.UseDefaultCredentials = true;
+                       smtp.Port = 587;
+                       smtp.EnableSsl = true;
+                       smtp.Credentials = new NetworkCredential(ConfigurationManager.AppSettings["SMTPUser"], ConfigurationManager.AppSettings["SMTPPass"]);
+                       //smtp.Credentials = new NetworkCredential("wikigamecustomerservice@gmail.com", "WikiGame&CustomerService");
+                       smtp.Host = "smtp.gmail.com";
+                       smtp.Send(mailMessage);
+                       @ViewBag.email_sent = true;
+                   }
+                   catch (Exception ex)
+                   {
+                       //Response.Write("Could not send the e-mail - error: " + ex.Message);
+                   }
+               }
+               else
+               {
+                   @ViewBag.noUser = "No user with such email was found!";
+               }
+            }
+            return View(model);
+        }
         #region Status Codes
         private static string ErrorCodeToString(MembershipCreateStatus createStatus)
         {
