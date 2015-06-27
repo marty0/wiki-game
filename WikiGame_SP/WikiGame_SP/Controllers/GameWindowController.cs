@@ -9,6 +9,7 @@ using WikiGame.Models;
 using System.Web.Security;
 using WikiGame_SP.Models;
 using WikiGame_SP.Hubs;
+using System.Configuration;
 
 namespace WikiGame.Controllers
 {
@@ -118,6 +119,7 @@ namespace WikiGame.Controllers
                 {
                     ViewBag.position = db.Points.Count(p => p.points <= points) + 1;
                 }
+                ViewBag.appId = ConfigurationManager.AppSettings["AppId"];
                 ViewBag.moves = points;
             }
         }

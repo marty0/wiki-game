@@ -53,6 +53,11 @@
                                         <div class="form-group">
                                             @Html.PasswordFor(m => m.Password, new { @class = "form-control pass", @placeholder = "Password", @name = "", @type = "password", @value = "" })
                                         </div>
+                                         
+                                        <div class="form-group">
+                                            @Html.CheckBoxFor(m => m.RememberMe)
+                                            @Html.LabelFor(m => m.RememberMe)
+                                        </div>
 
                                         @Html.Hidden("returnUrl", (object)ViewBag.ReturnUrl)
 
