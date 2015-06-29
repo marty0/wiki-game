@@ -109,6 +109,9 @@
                     document.body.appendChild(form);
                     form.submit();
                 }
+            }, {
+                scope: 'email', 
+                return_scopes: true
             });
         }
         window.fbAsyncInit = function () {

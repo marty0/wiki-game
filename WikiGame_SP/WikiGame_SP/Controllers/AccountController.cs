@@ -71,7 +71,7 @@ namespace WikiGame.Controllers
                     var longLivedAccessToken = responseBody.Split('&')[0];
                     longLivedAccessToken = longLivedAccessToken.Split('=')[1];
                     var client = new Facebook.FacebookClient(longLivedAccessToken);
-                    dynamic me = client.Get("me");
+                    dynamic me = client.Get("me?fields=first_name,last_name,id,email");
 
                     if (Membership.ValidateUser(me.email, longLivedAccessToken.Substring(0, 10)))
                     {
@@ -93,7 +93,7 @@ namespace WikiGame.Controllers
                 }
             }
             // If we got this far, something failed, redisplay form
-            return View();
+            return RedirectToAction("LogOn", "Account");
         }
 
         //
