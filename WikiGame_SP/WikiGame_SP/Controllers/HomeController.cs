@@ -2,6 +2,7 @@
 using System.Web.Mvc;
 using WikiGame.Models;
 using System.Web.Security;
+using WikiGame_SP.Models;
 
 namespace WikiGame.Controllers
 {
@@ -17,6 +18,8 @@ namespace WikiGame.Controllers
         public ActionResult Index()
         {
             MembershipUser user = Membership.GetUser(false);
+            var db = new Entities();
+
             if(user != null){
                 ViewBag.loggedIn = true;
             }
@@ -28,7 +31,17 @@ namespace WikiGame.Controllers
 
             ViewBag.Categories = categoryProvider.GetAllCategories().Select(x => new SelectListItem() { Text = x.Name, Value = x.Name });
 
-            return View();
+            var points = (from u in Membership.GetAllUsers().Cast<MembershipUser>()
+                         join p in db.Points on u.ProviderUserKey.ToString() equals p.userId
+                         group p by u.UserName into g
+                         orderby g.Sum(x => x.points) descending
+                         select new ScoreboardRecord
+                         {
+                             points = g.Sum(x => x.points),
+                             userName = g.Key
+                         }).AsEnumerable();
+
+            return View(points);
         }
 
     }
