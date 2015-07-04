@@ -26,16 +26,20 @@
 
 </script>
 <body>
-    <div class="pull-right">
-        <div id="LogOff">
+    <div class="pull-right" style="width:30%">
             @if (Request.IsAuthenticated)
             {
-                <strong id="Username">@User.Identity.Name</strong>
-                @Html.ActionLink("[LogOff]",
-                     "LogOff",
-                "Account")
+                <div class="form-group col-lg-4">
+                    <strong id="Username">Hello, @User.Identity.Name</strong>
+                </div>
+                <div class="form-group col-lg-4">
+                    <a class="col-md-5 btn btn-primary btn-block" href="@Url.Action("Profile", "Account")">Profile</a>
+                </div>
+                <div class="form-group col-lg-4">
+                    <a class="col-md-5 btn btn-primary btn-block" href="@Url.Action("LogOff", "Account")">LogOff</a>
+                </div>
+                
             }
-        </div>
 
     </div>
     <div class="container">

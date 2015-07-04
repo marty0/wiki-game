@@ -177,6 +177,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>PointsModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\ProfilePointsModel.cs" />
     <Compile Include="Models\ScoreboardRecord.cs" />
     <Compile Include="Models\TestCategoryProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -358,6 +359,7 @@
     <Content Include="Views\GameWindow\Index.cshtml" />
     <Content Include="Views\Shared\Game.cshtml" />
     <Content Include="Views\Account\RestorePassword.cshtml" />
+    <Content Include="Views\Account\Profile.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

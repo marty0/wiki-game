@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Web.Mvc;
 using System.Web.Security;
 using WikiGame.Models;
@@ -6,6 +7,7 @@ using System.Configuration;
 using System.IO;
 using System.Net;
 using System.Net.Mail;
+using WikiGame_SP.Models;
 
 namespace WikiGame.Controllers
 {
@@ -242,6 +244,65 @@ namespace WikiGame.Controllers
                }
             }
             return View(model);
+        }
+
+        public ActionResult Profile()
+        {
+            MembershipUser user = Membership.GetUser(false);
+            var db = new Entities();
+            if (user == null)
+            {
+                return RedirectToAction("LogOn", "Account");
+            }
+            else
+            {
+                var userId = user.ProviderUserKey.ToString();
+                var points = (from p in db.Points
+                              where p.userId == userId
+                              orderby p.Id descending
+                              select new ProfilePointsModel
+                              {
+                                  points = p.points
+                              }).AsEnumerable();
+                             
+               var all = (from u in Membership.GetAllUsers().Cast<MembershipUser>()
+                              join p in db.Points on u.ProviderUserKey.ToString() equals p.userId
+                              group p by u.UserName into g
+                              orderby g.Sum(x => x.points) descending
+                              select new ScoreboardRecord
+                              {
+                                  points = g.Sum(x => x.points),
+                                  userName = g.Key
+                              }).AsEnumerable();
+                var userPoints = (from o in all where o.userName == user.UserName select o.points);
+                var medal = (from m in all
+                             where m.points < userPoints.ElementAt(0)
+                             select m).Count();
+                if (medal < 1)
+                {
+                    ViewBag.medal = "gold";
+
+                }
+                else{
+                    if (medal < 2)
+                    {
+                        ViewBag.medal = "silver";
+
+                    }
+                    else
+                    {
+                        if (medal < 3)
+                        {
+                            ViewBag.medal = "bronze";
+
+                        }
+
+                    }
+                }
+
+                return View(points);
+            }
+            
         }
         #region Status Codes
         private static string ErrorCodeToString(MembershipCreateStatus createStatus)
