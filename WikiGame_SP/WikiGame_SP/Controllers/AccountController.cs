@@ -262,7 +262,11 @@ namespace WikiGame.Controllers
                               orderby p.Id descending
                               select new ProfilePointsModel
                               {
-                                  points = p.points
+                                  points = p.points,
+                                  timeElapsed = p.timeElapsed,
+                                  category = p.category,
+                                  dateOfGame = p.dateOfGame
+
                               }).AsEnumerable();
                              
                var all = (from u in Membership.GetAllUsers().Cast<MembershipUser>()

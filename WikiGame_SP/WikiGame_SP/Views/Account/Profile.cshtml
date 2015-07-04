@@ -19,7 +19,10 @@
                     <thead>
                         <tr>
                             <th>#</th>
+                            <th>Date</th>
                             <th>Clicks</th>
+                            <th>Time</th>
+                            <th>Category</th>
                         </tr>
                     </thead>
                     @{int index = 0;}
@@ -28,7 +31,10 @@
                         index++;
                         <tr>
                             <th scope="row">@index</th>
+                            <td>@point.dateOfGame</td>
                             <td>@point.points</td>
+                            <td>@point.timeElapsed sec</td>
+                            <td>@point.category</td>
                         </tr>
                     }
                 </table>

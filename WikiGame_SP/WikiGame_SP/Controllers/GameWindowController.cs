@@ -104,12 +104,16 @@ namespace WikiGame.Controllers
                 int points = (int)System.Web.HttpContext.Current.Session["moves"];
 
                 var user = Membership.GetUser(false);
+                var userInfo = (UserInformation)System.Web.HttpContext.Current.Session["UserInfo"];
                 var db = new Entities();
                 if (user != null)
                 {
                     var point = new Point();
                     point.userId = user.ProviderUserKey.ToString();
                     point.points = points;
+                    point.timeElapsed = (int) time;
+                    point.category = userInfo.CategoryName;
+                    point.dateOfGame = DateTime.Now;
                     ViewBag.position = db.Points.Count(p => p.points <= points) + 1;
                     db.Points.Add(point);
 

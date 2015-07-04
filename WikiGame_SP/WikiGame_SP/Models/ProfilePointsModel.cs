@@ -8,5 +8,8 @@ namespace WikiGame_SP.Models
     public class ProfilePointsModel
     {
         public int points { get; set; }
+        public int timeElapsed { get; set; }
+        public string category { get; set; }
+        public Nullable<System.DateTime> dateOfGame { get; set; }
     }
 }

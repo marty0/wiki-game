@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="WikiGameModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="WikiGameModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityContainer Name="WikiGameModelStoreContainer">
           <EntitySet Name="Points" EntityType="WikiGameModel.Store.Points" store:Type="Tables" Schema="dbo" />
         </EntityContainer>
@@ -15,9 +15,11 @@
           <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="userId" Type="varchar" Nullable="false" MaxLength="150" />
           <Property Name="points" Type="int" Nullable="false" />
+          <Property Name="timeElapsed" Type="int" Nullable="false" />
+          <Property Name="category" Type="varchar" Nullable="false" MaxLength="255" />
+          <Property Name="dateOfGame" Type="datetime" />
         </EntityType>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="WikiGameModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -28,9 +30,12 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
-          <Property Name="userId" Type="String" Nullable="false" MaxLength="150" Unicode="false" FixedLength="false" />
-          <Property Name="points" Type="Int32" Nullable="false" />
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="userId" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="points" Nullable="false" />
+          <Property Type="Int32" Name="timeElapsed" Nullable="false" />
+          <Property Type="String" Name="category" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="dateOfGame" Precision="3" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -41,9 +46,12 @@
           <EntitySetMapping Name="Points">
             <EntityTypeMapping TypeName="WikiGameModel.Point">
               <MappingFragment StoreEntitySet="Points">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="userId" ColumnName="userId" />
+                <ScalarProperty Name="dateOfGame" ColumnName="dateOfGame" />
+                <ScalarProperty Name="category" ColumnName="category" />
+                <ScalarProperty Name="timeElapsed" ColumnName="timeElapsed" />
                 <ScalarProperty Name="points" ColumnName="points" />
+                <ScalarProperty Name="userId" ColumnName="userId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

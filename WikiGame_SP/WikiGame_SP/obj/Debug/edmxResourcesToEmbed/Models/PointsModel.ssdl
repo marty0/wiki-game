@@ -10,5 +10,8 @@
     <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
     <Property Name="userId" Type="varchar" Nullable="false" MaxLength="150" />
     <Property Name="points" Type="int" Nullable="false" />
+    <Property Name="timeElapsed" Type="int" Nullable="false" />
+    <Property Name="category" Type="varchar" Nullable="false" MaxLength="255" />
+    <Property Name="dateOfGame" Type="datetime" />
   </EntityType>
 </Schema>

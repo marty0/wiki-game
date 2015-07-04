@@ -17,5 +17,8 @@ namespace WikiGame_SP.Models
         public int Id { get; set; }
         public string userId { get; set; }
         public int points { get; set; }
+        public int timeElapsed { get; set; }
+        public string category { get; set; }
+        public Nullable<System.DateTime> dateOfGame { get; set; }
     }
 }

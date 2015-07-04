@@ -4,9 +4,12 @@
     <EntitySetMapping Name="Points">
       <EntityTypeMapping TypeName="WikiGameModel.Point">
         <MappingFragment StoreEntitySet="Points">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="userId" ColumnName="userId" />
+          <ScalarProperty Name="dateOfGame" ColumnName="dateOfGame" />
+          <ScalarProperty Name="category" ColumnName="category" />
+          <ScalarProperty Name="timeElapsed" ColumnName="timeElapsed" />
           <ScalarProperty Name="points" ColumnName="points" />
+          <ScalarProperty Name="userId" ColumnName="userId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

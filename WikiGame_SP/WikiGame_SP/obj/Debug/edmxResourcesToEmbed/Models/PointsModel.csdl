@@ -7,8 +7,11 @@
     <Key>
       <PropertyRef Name="Id" />
     </Key>
-    <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
-    <Property Name="userId" Type="String" Nullable="false" MaxLength="150" Unicode="false" FixedLength="false" />
-    <Property Name="points" Type="Int32" Nullable="false" />
+    <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="userId" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Type="Int32" Name="points" Nullable="false" />
+    <Property Type="Int32" Name="timeElapsed" Nullable="false" />
+    <Property Type="String" Name="category" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="DateTime" Name="dateOfGame" Precision="3" />
   </EntityType>
 </Schema>
