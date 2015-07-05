@@ -31,15 +31,23 @@ namespace WikiGame.Controllers
 
             ViewBag.Categories = categoryProvider.GetAllCategories().Select(x => new SelectListItem() { Text = x.Name, Value = x.Name });
 
-            var points = (from u in Membership.GetAllUsers().Cast<MembershipUser>()
-                         join p in db.Points on u.ProviderUserKey.ToString() equals p.userId
-                         group p by u.UserName into g
-                         orderby g.Sum(x => x.points) descending
-                         select new ScoreboardRecord
-                         {
-                             points = g.Sum(x => x.points),
-                             userName = g.Key
-                         }).AsEnumerable();
+            //var points = (from u in Membership.GetAllUsers().Cast<MembershipUser>()
+            //             join p in db.Points on u.ProviderUserKey.ToString() equals p.userId
+            //             group p by u.UserName into g
+            //             orderby g.Sum(x => x.points) descending
+            //             select new ScoreboardRecord
+            //             {
+            //                 points = g.Sum(x => x.points),
+            //                 userName = g.Key
+            //             }).AsEnumerable();
+            var points = (from game in db.MultiplayerGames
+                          group game by game.winner into g
+                          orderby g.Average(x => x.points.Value) ascending
+                          select new ScoreboardRecord
+                          {
+                              points = g.Average(x => x.points.Value) + g.Average(x => x.timeElapsed),
+                              userName = g.Key
+                          }).AsEnumerable();
 
             return View(points);
         }
