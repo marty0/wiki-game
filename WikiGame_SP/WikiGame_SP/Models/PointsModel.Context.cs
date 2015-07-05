@@ -26,5 +26,6 @@ namespace WikiGame_SP.Models
         }
     
         public DbSet<Point> Points { get; set; }
+        public DbSet<MultiplayerGame> MultiplayerGames { get; set; }
     }
 }

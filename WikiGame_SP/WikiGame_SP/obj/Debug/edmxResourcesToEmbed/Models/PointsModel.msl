@@ -13,5 +13,21 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="MultiplayerGames">
+      <EntityTypeMapping TypeName="WikiGameModel.MultiplayerGame">
+        <MappingFragment StoreEntitySet="MultiplayerGames">
+          <ScalarProperty Name="dateOfGame" ColumnName="dateOfGame" />
+          <ScalarProperty Name="category" ColumnName="category" />
+          <ScalarProperty Name="timeElapsed" ColumnName="timeElapsed" />
+          <ScalarProperty Name="points" ColumnName="points" />
+          <ScalarProperty Name="startPage" ColumnName="startPage" />
+          <ScalarProperty Name="winner" ColumnName="winner" />
+          <ScalarProperty Name="userId2" ColumnName="userId2" />
+          <ScalarProperty Name="userId1" ColumnName="userId1" />
+          <ScalarProperty Name="gameId" ColumnName="gameId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

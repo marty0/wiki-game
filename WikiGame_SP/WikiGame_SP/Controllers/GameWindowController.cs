@@ -40,7 +40,9 @@ namespace WikiGame.Controllers
             {
                     @ViewBag.hasWon = false;
                     @ViewBag.wiki_page = new HtmlString(GameHub.Games[gameId].StartPage);
+                    System.Web.HttpContext.Current.Session["multyplayerGameId"] = gameId;
                     return View("Game");
+           
             }
 
             var streamResponse = GetPageStream(WIKI_BASE + "Special:Random");
@@ -59,6 +61,7 @@ namespace WikiGame.Controllers
 
             if (!string.IsNullOrWhiteSpace(gameId) && GameHub.Games.ContainsKey(gameId) && string.IsNullOrWhiteSpace(GameHub.Games[gameId].StartPage))
             {
+                System.Web.HttpContext.Current.Session["multyplayerGameId"] = gameId;
                 GameHub.Games[gameId].StartPage = page;
             }
 
@@ -108,16 +111,58 @@ namespace WikiGame.Controllers
                 var db = new Entities();
                 if (user != null)
                 {
-                    var point = new Point();
-                    point.userId = user.ProviderUserKey.ToString();
-                    point.points = points;
-                    point.timeElapsed = (int) time;
-                    point.category = userInfo.CategoryName;
-                    point.dateOfGame = DateTime.Now;
-                    ViewBag.position = db.Points.Count(p => p.points <= points) + 1;
-                    db.Points.Add(point);
+                    if ( System.Web.HttpContext.Current.Session["multyplayerGameId"] != null)
+                    {
+                        try
+                        {
+                            string gameId = System.Web.HttpContext.Current.Session["multyplayerGameId"].ToString();
+                            var multiplayerGame = (from g in db.MultiplayerGames where g.gameId == gameId select g).AsEnumerable();
+                            var currentGame = multiplayerGame.ElementAt(0);
+                            currentGame.startPage = GameHub.Games[gameId.ToString()].StartPage;
+                            currentGame.points = points;
+                            timeElapsed = DateTime.Now - (DateTime)currentGame.dateOfGame;
+                            currentGame.timeElapsed = (int)(timeElapsed.TotalSeconds);
+                            currentGame.winner = user.UserName;
+                            var original = db.MultiplayerGames.Find(currentGame.Id);
+                            //db.Entry(original).CurrentValues.SetValues(currentGame);
+                            ViewBag.position = db.MultiplayerGames.Count(p => p.points <= points && p.category == currentGame.category) + 1;
+                            db.SaveChanges();
+                        
+                        }
+                        catch (System.Data.Entity.Validation.DbEntityValidationException e)
+                        {
+                            foreach (var eve in e.EntityValidationErrors)
+                            {
+                                Console.WriteLine("Entity of type \"{0}\" in state \"{1}\" has the following validation errors:",
+                                    eve.Entry.Entity.GetType().Name, eve.Entry.State);
+                                foreach (var ve in eve.ValidationErrors)
+                                {
+                                    Console.WriteLine("- Property: \"{0}\", Value: \"{1}\", Error: \"{2}\"",
+                                        ve.PropertyName,
+                                        eve.Entry.CurrentValues.GetValue<object>(ve.PropertyName),
+                                        ve.ErrorMessage);
+                                }
+                            }
+                            throw;
+                        }
+                        catch (Exception ex)
+                        {
+                            Console.WriteLine(ex.InnerException);
+                        }
+                    }
+                    else
+                    {
+                        var point = new Point();
+                        point.userId = user.ProviderUserKey.ToString();
+                        point.points = points;
+                        point.timeElapsed = (int)time;
+                        point.category = userInfo.CategoryName;
+                        point.dateOfGame = DateTime.Now;
+                        ViewBag.position = db.Points.Count(p => p.points <= points) + 1;
+                        db.Points.Add(point);
 
-                    db.SaveChanges();
+                        db.SaveChanges();
+                    }
                 }
                 else
                 {

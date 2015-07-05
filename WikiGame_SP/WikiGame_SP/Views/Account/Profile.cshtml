@@ -1,4 +1,4 @@
-﻿@model IEnumerable<WikiGame_SP.Models.ProfilePointsModel>
+﻿
     @{
         ViewBag.Title = "Profile";
     }
@@ -9,13 +9,16 @@
         </div>
         @{
             if(ViewBag.medal != null){
-                 <h3>Your medals: </h3>  <img src="@Url.Content("~/Content/images/"+ViewBag.medal+"medal.png")" height="18" /> 
+                 <h3>Your medals "Single Player": </h3>  <img src="@Url.Content("~/Content/images/"+ViewBag.medal+"medal.png")" height="18" /> 
+             }
+             if(ViewBag.medalMultyplayer != null){
+                 <h3>Your medals "Multiplayer": </h3>  <img src="@Url.Content("~/Content/images/"+ViewBag.medalMultyplayer+"medal.png")" height="18" /> 
              }
         }
         <div id="Games">
             <div class="col-md-7">
                 <table class="table table-condensed">
-                    <caption>Your Games</caption>
+                    <caption>Your Games "Single Player"</caption>
                     <thead>
                         <tr>
                             <th>#</th>
@@ -26,7 +29,7 @@
                         </tr>
                     </thead>
                     @{int index = 0;}
-                    @foreach (var point in Model)
+                    @foreach (var point in ViewData["points"] as IEnumerable<WikiGame_SP.Models.ProfilePointsModel>)
                     {
                         index++;
                         <tr>
@@ -35,6 +38,39 @@
                             <td>@point.points</td>
                             <td>@point.timeElapsed sec</td>
                             <td>@point.category</td>
+                        </tr>
+                    }
+                </table>
+            </div>
+        </div>
+    </div>
+    <div id="Games">
+            <div class="col-md-7">
+                <table class="table table-condensed">
+                    <caption>Your Games "Multiplayer"</caption>
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Date</th>
+                            <th>Opponent</th>
+                            <th>Clicks</th>
+                            <th>Time</th>
+                            <th>Category</th>
+                            <th>Result</th>
+                        </tr>
+                    </thead>
+                    @{index = 0;}
+                    @foreach (var point in ViewData["multiplayerPoints"] as IEnumerable<WikiGame_SP.Models.ProfileMultiplayerPoints>)
+                    {
+                        index++;
+                        <tr>
+                            <th scope="row">@index</th>
+                            <td>@point.dateOfGame</td>
+                            <td>@point.opponent</td>
+                            <td>@point.points</td>
+                            <td>@point.timeElapsed sec</td>
+                            <td>@point.category</td>
+                            <td>@point.winner</td>
                         </tr>
                     }
                 </table>

@@ -26,20 +26,23 @@
 
 </script>
 <body>
-    <div class="pull-right" style="width:30%">
+    <div class="pull-right row">
             @if (Request.IsAuthenticated)
             {
-                <div class="form-group col-lg-4">
-                    <strong id="Username">Hello, @User.Identity.Name</strong>
+                <div style=" padding-left: 15px; padding-right: 15px;">
+                    <strong id="Username">@User.Identity.Name</strong>
                 </div>
-                <div class="form-group col-lg-4">
-                    <a class="col-md-5 btn btn-primary btn-block" href="@Url.Action("Profile", "Account")">Profile</a>
+                <div class="col-md-3">
+                    <a class=" btn btn-primary btn-xs" href="@Url.Action("Profile", "Account")">Profile</a>
                 </div>
-                <div class="form-group col-lg-4">
-                    <a class="col-md-5 btn btn-primary btn-block" href="@Url.Action("LogOff", "Account")">LogOff</a>
+                <div class="col-md-3">
+                    <a class=" btn btn-primary btn-xs" href="@Url.Action("LogOff", "Account")">LogOff</a>
                 </div>
                 
             }
+            <div class="col-md-4">
+                    <a class="btn btn-primary btn-xs" href="@Url.Action("Index", "Home")">Start Game</a>
+                </div>
 
     </div>
     <div class="container">

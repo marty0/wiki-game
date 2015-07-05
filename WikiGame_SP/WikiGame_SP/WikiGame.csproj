@@ -156,6 +156,9 @@
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\GameCategory.cs" />
     <Compile Include="Models\ICategoryProvider.cs" />
+    <Compile Include="Models\MultiplayerGame.cs">
+      <DependentUpon>PointsModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Multiplayer\Game.cs" />
     <Compile Include="Models\Multiplayer\GameMessage.cs" />
     <Compile Include="Models\Multiplayer\Player.cs" />
@@ -177,6 +180,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>PointsModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\ProfileMultiplayerPoints.cs" />
     <Compile Include="Models\ProfilePointsModel.cs" />
     <Compile Include="Models\ScoreboardRecord.cs" />
     <Compile Include="Models\TestCategoryProvider.cs" />

@@ -6,8 +6,24 @@
     <edmx:StorageModels>
     <Schema Namespace="WikiGameModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityContainer Name="WikiGameModelStoreContainer">
+          <EntitySet Name="MultiplayerGames" EntityType="WikiGameModel.Store.MultiplayerGames" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Points" EntityType="WikiGameModel.Store.Points" store:Type="Tables" Schema="dbo" />
         </EntityContainer>
+        <EntityType Name="MultiplayerGames">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="gameId" Type="varchar" Nullable="false" MaxLength="250" />
+          <Property Name="userId1" Type="varchar" Nullable="false" MaxLength="150" />
+          <Property Name="userId2" Type="varchar" MaxLength="150" />
+          <Property Name="winner" Type="varchar" MaxLength="150" />
+          <Property Name="startPage" Type="text" />
+          <Property Name="points" Type="int" />
+          <Property Name="timeElapsed" Type="int" Nullable="false" />
+          <Property Name="category" Type="varchar" Nullable="false" MaxLength="255" />
+          <Property Name="dateOfGame" Type="datetime" />
+        </EntityType>
         <EntityType Name="Points">
           <Key>
             <PropertyRef Name="Id" />
@@ -25,6 +41,7 @@
       <Schema Namespace="WikiGameModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="Entities" p1:LazyLoadingEnabled="true">
           <EntitySet Name="Points" EntityType="WikiGameModel.Point" />
+          <EntitySet Name="MultiplayerGames" EntityType="WikiGameModel.MultiplayerGame" />
         </EntityContainer>
         <EntityType Name="Point">
           <Key>
@@ -33,6 +50,21 @@
           <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Type="String" Name="userId" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
           <Property Type="Int32" Name="points" Nullable="false" />
+          <Property Type="Int32" Name="timeElapsed" Nullable="false" />
+          <Property Type="String" Name="category" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="dateOfGame" Precision="3" />
+        </EntityType>
+        <EntityType Name="MultiplayerGame">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="gameId" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="userId1" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="userId2" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="winner" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="startPage" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="points" />
           <Property Type="Int32" Name="timeElapsed" Nullable="false" />
           <Property Type="String" Name="category" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Type="DateTime" Name="dateOfGame" Precision="3" />
@@ -51,6 +83,22 @@
                 <ScalarProperty Name="timeElapsed" ColumnName="timeElapsed" />
                 <ScalarProperty Name="points" ColumnName="points" />
                 <ScalarProperty Name="userId" ColumnName="userId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MultiplayerGames">
+            <EntityTypeMapping TypeName="WikiGameModel.MultiplayerGame">
+              <MappingFragment StoreEntitySet="MultiplayerGames">
+                <ScalarProperty Name="dateOfGame" ColumnName="dateOfGame" />
+                <ScalarProperty Name="category" ColumnName="category" />
+                <ScalarProperty Name="timeElapsed" ColumnName="timeElapsed" />
+                <ScalarProperty Name="points" ColumnName="points" />
+                <ScalarProperty Name="startPage" ColumnName="startPage" />
+                <ScalarProperty Name="winner" ColumnName="winner" />
+                <ScalarProperty Name="userId2" ColumnName="userId2" />
+                <ScalarProperty Name="userId1" ColumnName="userId1" />
+                <ScalarProperty Name="gameId" ColumnName="gameId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

@@ -2,6 +2,7 @@
 <Schema Namespace="WikiGameModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
   <EntityContainer Name="Entities" p1:LazyLoadingEnabled="true">
     <EntitySet Name="Points" EntityType="WikiGameModel.Point" />
+    <EntitySet Name="MultiplayerGames" EntityType="WikiGameModel.MultiplayerGame" />
   </EntityContainer>
   <EntityType Name="Point">
     <Key>
@@ -10,6 +11,21 @@
     <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Type="String" Name="userId" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
     <Property Type="Int32" Name="points" Nullable="false" />
+    <Property Type="Int32" Name="timeElapsed" Nullable="false" />
+    <Property Type="String" Name="category" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="DateTime" Name="dateOfGame" Precision="3" />
+  </EntityType>
+  <EntityType Name="MultiplayerGame">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="gameId" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="userId1" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="userId2" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="winner" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="startPage" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Type="Int32" Name="points" />
     <Property Type="Int32" Name="timeElapsed" Nullable="false" />
     <Property Type="String" Name="category" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
     <Property Type="DateTime" Name="dateOfGame" Precision="3" />

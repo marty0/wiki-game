@@ -279,32 +279,90 @@ namespace WikiGame.Controllers
                                   userName = g.Key
                               }).AsEnumerable();
                 var userPoints = (from o in all where o.userName == user.UserName select o.points);
-                var medal = (from m in all
-                             where m.points < userPoints.ElementAt(0)
-                             select m).Count();
-                if (medal < 1)
+                if (userPoints.Count() > 0)
                 {
-                    ViewBag.medal = "gold";
-
-                }
-                else{
-                    if (medal < 2)
+                    var medal = (from m in all
+                                 where m.points < userPoints.ElementAt(0)
+                                 select m).Count();
+                    if (medal < 1)
                     {
-                        ViewBag.medal = "silver";
+                        ViewBag.medal = "gold";
 
                     }
                     else
                     {
-                        if (medal < 3)
+                        if (medal < 2)
                         {
-                            ViewBag.medal = "bronze";
+                            ViewBag.medal = "silver";
 
                         }
+                        else
+                        {
+                            if (medal < 3)
+                            {
+                                ViewBag.medal = "bronze";
 
+                            }
+
+                        }
                     }
                 }
 
-                return View(points);
+                var userName = user.UserName;
+                var multiplayerPoints = (from p in db.MultiplayerGames
+                              where (p.userId1 == userName || p.userId2 == userName) && p.winner != null
+                              orderby p.Id descending
+                              select new ProfileMultiplayerPoints
+                              {
+                                  points = (int) p.points,
+                                  timeElapsed = p.timeElapsed,
+                                  category = p.category,
+                                  dateOfGame = p.dateOfGame,
+                                  winner = (p.winner == userName ? "You Won!" : "You Lost!"),
+                                  opponent = (p.userId1 == userName ? p.userId2 : p.userId1)
+
+                              }).AsEnumerable();
+                var allMultiplayer = (from u in Membership.GetAllUsers().Cast<MembershipUser>()
+                           join p in db.MultiplayerGames on u.UserName equals p.winner
+                           group p by u.UserName into g
+                           orderby g.Min(x => x.points) descending
+                           select new ScoreboardRecord
+                           {
+                               points = g.Min(x => (int) x.points),
+                               userName = g.Key
+                           }).AsEnumerable();
+                var userPointsMultiplayer = (from o in allMultiplayer where o.userName == user.UserName select o.points);
+                if (userPointsMultiplayer.Count() > 0)
+                {
+                    var medal = (from m in allMultiplayer
+                                 where m.points < userPointsMultiplayer.ElementAt(0)
+                                 select m).Count();
+                    if (medal < 1)
+                    {
+                        ViewBag.medalMultyplayer = "gold";
+
+                    }
+                    else
+                    {
+                        if (medal < 2)
+                        {
+                            ViewBag.medalMultyplayer = "silver";
+
+                        }
+                        else
+                        {
+                            if (medal < 3)
+                            {
+                                ViewBag.medalMultyplayer = "bronze";
+
+                            }
+
+                        }
+                    }
+                }
+                ViewData["points"] = points;
+                ViewData["multiplayerPoints"] = multiplayerPoints;
+                return View();
             }
             
         }

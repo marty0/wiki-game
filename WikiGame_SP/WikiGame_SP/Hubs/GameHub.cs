@@ -3,8 +3,10 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Web;
     using Microsoft.AspNet.SignalR;
     using Models.Multiplayer;
+    using WikiGame_SP.Models;
 
     public class GameHub : Hub
     {
@@ -18,6 +20,7 @@
                 Name = username,
                 ConnectionId = Context.ConnectionId
             };
+            
 
             if (GameRooms.ContainsKey(category))
             {
@@ -34,7 +37,15 @@
                         StartGame = DateTime.Now,
                         CategoryName = category
                     };
-
+                    var db = new Entities();
+                    var multyplayerGame = new MultiplayerGame();
+                    multyplayerGame.userId1 = game.PlayerOne.Name;
+                    multyplayerGame.userId2 = game.PlayerTwo.Name;
+                    multyplayerGame.dateOfGame = game.StartGame;
+                    multyplayerGame.category = game.CategoryName;
+                    multyplayerGame.gameId = gameKey;
+                    db.MultiplayerGames.Add(multyplayerGame);
+                    db.SaveChanges();
                     Games.Add(gameKey, game);
 
                     var message = new GameMessage
