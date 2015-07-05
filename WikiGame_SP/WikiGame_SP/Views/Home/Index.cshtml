@@ -19,37 +19,62 @@
                     <input id="SeekGame" class="col-md-5 btn btn-primary btn-block" type="button" value="Seek Game" />
                 </div>
             </fieldset>
-        </div>
-        <div id="Scoreboard">
-            <div class="col-md-7">
-                <table class="table table-condensed">
-                    <caption>Scoreboard</caption>
-                    <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>User Name</th>
-                            <th>Points</th>
-                        </tr>
-                    </thead>
-                    @{int index = 0;}
-                    @foreach (var user in Model)
-                    {
-                        index++;
-                        <tr>
-                            <th scope="row">@index</th>
-                            <td>
-                                @user.userName
-                                @if (index == 1)
+            <div id="Scoreboard">
+                <div class="col-md-7">
+                    <table class="table table-condensed">
+                        <caption>Scoreboard</caption>
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>User Name</th>
+                                <th>Points</th>
+                            </tr>
+                        </thead>
+                        @{int index = 0;}
+                        @foreach (var user in Model)
+                        {
+                            index++;
+                            <tr>
+                                <th scope="row">@index</th>
+                                <td>
+                                    @user.userName
+                                    @if (index == 1)
                                     { <img src="@Url.Content("~/Content/images/goldmedal.png")" height="18" /> }
-                                @if (index == 2)
+                                    @if (index == 2)
                                     { <img src="@Url.Content("~/Content/images/silvermedal.png")" height="18" /> }
-                                @if (index == 3) 
+                                    @if (index == 3)
                                     { <img src="@Url.Content("~/Content/images/bronzemedal.png")" height="18" /> }
-                            </td>
-                            <td>@user.points</td>
-                        </tr>
-                    }
-                </table>
+                                </td>
+                                <td>@user.points</td>
+                            </tr>
+                        }
+                    </table>
+                </div>
+            </div>
+            <div id="rules">
+                <div class="col-md-7">
+                    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                        What are the rules?
+                    </button>
+                    <div class="collapse" id="collapseExample">
+                        <div class="well">
+                            <p>
+                                You are given a list of categories from which you can choose. Once the category is selected there are two buttons - for single-player and multiplayer accordingly.
+                            </p>
+                            <p>
+                                Pressing the "Single player" button is starting the game immediately and you are given an random wiki page,
+                                from which you have to reach wiki page which title should contain specific words, related to the chosen category.
+                                Once you've reached the desired wiki page, you will be notified that you won and the amount of acquired points.
+                            </p>
+                            <p>
+                                Pressing "Seek Game" would inform you that you are waiting for an opponent and when there is one the game will start.
+                                The game is played on one versus one basis.
+                                Both of the players are starting from a random wiki page and the game is over when one of them reaches desired wiki page.
+                                The winner takes a notification for the acquired points and the other player is shown a message that he lost the game.
+                            </p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
