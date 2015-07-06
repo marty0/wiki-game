@@ -49,6 +49,7 @@ namespace WikiGame.Models
         public string UserName { get; set; }
 
         [Required]
+        [EmailAddress(ErrorMessage = "Invalid Email Address")]
         [DataType(DataType.EmailAddress)]
         [Display(Name = "Email address")]
         public string Email { get; set; }

@@ -8,9 +8,7 @@
             <h1>Profile</h1>
         </div>
         @{
-            if(ViewBag.medal != null){
-                 <h3>Your medals "Single Player": </h3>  <img src="@Url.Content("~/Content/images/"+ViewBag.medal+"medal.png")" height="18" /> 
-             }
+            
              if(ViewBag.medalMultyplayer != null){
                  <h3>Your medals "Multiplayer": </h3>  <img src="@Url.Content("~/Content/images/"+ViewBag.medalMultyplayer+"medal.png")" height="18" /> 
              }

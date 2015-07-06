@@ -269,7 +269,7 @@ namespace WikiGame.Controllers
 
                               }).AsEnumerable();
                              
-               var all = (from u in Membership.GetAllUsers().Cast<MembershipUser>()
+               /*var all = (from u in Membership.GetAllUsers().Cast<MembershipUser>()
                               join p in db.Points on u.ProviderUserKey.ToString() equals p.userId
                               group p by u.UserName into g
                               orderby g.Sum(x => x.points) descending
@@ -307,7 +307,7 @@ namespace WikiGame.Controllers
                         }
                     }
                 }
-
+                */
                 var userName = user.UserName;
                 var multiplayerPoints = (from p in db.MultiplayerGames
                               where (p.userId1 == userName || p.userId2 == userName) && p.winner != null
@@ -322,7 +322,15 @@ namespace WikiGame.Controllers
                                   opponent = (p.userId1 == userName ? p.userId2 : p.userId1)
 
                               }).AsEnumerable();
-                var allMultiplayer = (from u in Membership.GetAllUsers().Cast<MembershipUser>()
+                var allMultiplayer = (from game in db.MultiplayerGames
+                              group game by game.winner into g
+                              orderby g.Sum(x => (1000 - x.points + x.timeElapsed) > 0 ? (1000 - x.points + x.timeElapsed) : 0) descending
+                              select new ScoreboardRecord
+                              {
+                                  points = g.Sum(x => (1000 - x.points + x.timeElapsed) > 0 ? (1000 - x.points + x.timeElapsed) : 0),
+                                  userName = g.Key
+                              }).AsEnumerable();
+                /*var allMultiplayer = (from u in Membership.GetAllUsers().Cast<MembershipUser>()
                            join p in db.MultiplayerGames on u.UserName equals p.winner
                            group p by u.UserName into g
                            orderby g.Min(x => x.points) descending
@@ -330,12 +338,12 @@ namespace WikiGame.Controllers
                            {
                                points = g.Min(x => (int) x.points),
                                userName = g.Key
-                           }).AsEnumerable();
+                           }).AsEnumerable();*/
                 var userPointsMultiplayer = (from o in allMultiplayer where o.userName == user.UserName select o.points);
                 if (userPointsMultiplayer.Count() > 0)
                 {
                     var medal = (from m in allMultiplayer
-                                 where m.points < userPointsMultiplayer.ElementAt(0)
+                                 where m.points > userPointsMultiplayer.ElementAt(0)
                                  select m).Count();
                     if (medal < 1)
                     {
