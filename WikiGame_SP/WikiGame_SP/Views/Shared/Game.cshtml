@@ -9,10 +9,15 @@
 <div id="won">
     @if (ViewBag.hasWon)
     {
+        
         <div class="alert alert-success" role="alert">
             <p>You Won!</p>
-            <p>Your score is @ViewBag.moves</p>
+            <p>Your number of moves is @ViewBag.moves</p>
             <p>Your rank is @ViewBag.position</p>
+            @if (System.Web.HttpContext.Current.Session["startPage"] != null)
+            {
+                <input type="button" id="startOver" value="Start the same mission again"/>
+            }
             <input type="hidden" id="YouWon" />
             <input type="button" value="Share on Facebook" onclick="shareFB()">
             <div id="fb-root"></div>
@@ -31,6 +36,12 @@
                         }, function () {
                             $(this).fadeTo(500, 0.2);
                         });
+                });
+
+                $("#startOver").click(function (e) {
+                    $.get(Site.getPathToAction("Index", "GameWindow") + "?startOver=true", function (data) {
+                        $("#GamePanel").html(data);
+                    });
                 });
 
                 FB.init({

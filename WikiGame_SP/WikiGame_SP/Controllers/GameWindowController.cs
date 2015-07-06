@@ -24,13 +24,18 @@ namespace WikiGame.Controllers
             wikiPageParser = new WikiPageParser(catProvider);
         }
 
-        public ActionResult Index(string categoryID, string gameId)
+        public ActionResult Index(string categoryID, string gameId, bool startOver = false)
         {
+            if (startOver)
+            {
+                return NewGame(gameId);
+            }
             var userInfo = new UserInformation();
             userInfo.CategoryName = categoryID;
             System.Web.HttpContext.Current.Session["UserInfo"] = userInfo;
             System.Web.HttpContext.Current.Session["moves"] = 0;
             System.Web.HttpContext.Current.Session["time"] = DateTime.Now;
+            System.Web.HttpContext.Current.Session.Remove("startPage");
 
             return NewGame(gameId);
         }
@@ -66,6 +71,18 @@ namespace WikiGame.Controllers
                 {
                     System.Web.HttpContext.Current.Session["multyplayerGameId"] = gameId;
                     GameHub.Games[gameId].StartPage = page;
+                }
+                else
+                {
+                    if (System.Web.HttpContext.Current.Session["startPage"] != null)
+                    {
+                        @ViewBag.hasWon = false;
+                        @ViewBag.wiki_page = new HtmlString(System.Web.HttpContext.Current.Session["startPage"].ToString());
+                    }
+                    else
+                    {
+                        System.Web.HttpContext.Current.Session["startPage"] = page;
+                    }
                 }
             }
 
