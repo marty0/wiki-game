@@ -17,6 +17,7 @@ namespace WikiGame.Controllers
     {
         private static readonly string WIKI_BASE = "http://en.wikipedia.org/wiki/";
         private WikiPageParser wikiPageParser;
+        private static Object thisLock = new Object();
 
         public GameWindowController(ICategoryProvider catProvider)
         {
@@ -36,33 +37,36 @@ namespace WikiGame.Controllers
 
         public ActionResult NewGame(string gameId)
         {
-            if (!string.IsNullOrWhiteSpace(gameId) && GameHub.Games.ContainsKey(gameId) && !string.IsNullOrWhiteSpace(GameHub.Games[gameId].StartPage))
+            lock (thisLock)
             {
+                if (!string.IsNullOrWhiteSpace(gameId) && GameHub.Games.ContainsKey(gameId) && !string.IsNullOrWhiteSpace(GameHub.Games[gameId].StartPage))
+                {
                     @ViewBag.hasWon = false;
                     @ViewBag.wiki_page = new HtmlString(GameHub.Games[gameId].StartPage);
                     System.Web.HttpContext.Current.Session["multyplayerGameId"] = gameId;
                     return View("Game");
-           
-            }
 
-            var streamResponse = GetPageStream(WIKI_BASE + "Special:Random");
+                }
 
-            bool hasWon;
+                var streamResponse = GetPageStream(WIKI_BASE + "Special:Random");
 
-            var page = wikiPageParser.GetContent(streamResponse, "", out hasWon);
+                bool hasWon;
 
-            while (hasWon)
-            {
-                page = wikiPageParser.GetContent(streamResponse, "", out hasWon);
-            }
+                var page = wikiPageParser.GetContent(streamResponse, "", out hasWon);
 
-            @ViewBag.hasWon = hasWon;
-            @ViewBag.wiki_page = new HtmlString(page);
+                while (hasWon)
+                {
+                    page = wikiPageParser.GetContent(streamResponse, "", out hasWon);
+                }
 
-            if (!string.IsNullOrWhiteSpace(gameId) && GameHub.Games.ContainsKey(gameId) && string.IsNullOrWhiteSpace(GameHub.Games[gameId].StartPage))
-            {
-                System.Web.HttpContext.Current.Session["multyplayerGameId"] = gameId;
-                GameHub.Games[gameId].StartPage = page;
+                @ViewBag.hasWon = hasWon;
+                @ViewBag.wiki_page = new HtmlString(page);
+
+                if (!string.IsNullOrWhiteSpace(gameId) && GameHub.Games.ContainsKey(gameId) && string.IsNullOrWhiteSpace(GameHub.Games[gameId].StartPage))
+                {
+                    System.Web.HttpContext.Current.Session["multyplayerGameId"] = gameId;
+                    GameHub.Games[gameId].StartPage = page;
+                }
             }
 
             return View("Game");
@@ -111,7 +115,7 @@ namespace WikiGame.Controllers
                 var db = new Entities();
                 if (user != null)
                 {
-                    if ( System.Web.HttpContext.Current.Session["multyplayerGameId"] != null)
+                    if (System.Web.HttpContext.Current.Session["multyplayerGameId"] != null)
                     {
                         try
                         {
@@ -127,7 +131,7 @@ namespace WikiGame.Controllers
                             //db.Entry(original).CurrentValues.SetValues(currentGame);
                             ViewBag.position = db.MultiplayerGames.Count(p => p.points <= points && p.category == currentGame.category) + 1;
                             db.SaveChanges();
-                        
+
                         }
                         catch (System.Data.Entity.Validation.DbEntityValidationException e)
                         {

@@ -3,10 +3,9 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using System.Web;
     using Microsoft.AspNet.SignalR;
     using Models.Multiplayer;
-    using WikiGame_SP.Models;
+    using Models;
 
     public class GameHub : Hub
     {
@@ -89,6 +88,7 @@
         public override System.Threading.Tasks.Task OnDisconnected(bool stopCalled)
         {
             RemoveGameByPlayer(Context.ConnectionId);
+            RemovePlayerFromGameRooms(Context.ConnectionId);
 
             return base.OnDisconnected(stopCalled);
         }
@@ -103,6 +103,17 @@
                 {
                     Games.Remove(key);
                     return;
+                }
+            }
+        }
+
+        private void RemovePlayerFromGameRooms(string connectionId)
+        {
+            foreach (var key in GameRooms.Keys)
+            {
+                if (GameRooms[key] != null)
+                {
+                    GameRooms[key].RemoveAll(g => g.ConnectionId == connectionId);
                 }
             }
         }

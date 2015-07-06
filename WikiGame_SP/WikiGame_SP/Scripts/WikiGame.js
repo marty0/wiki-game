@@ -41,7 +41,7 @@
                 }, 2500);
                 
             } else if (message.Type == 1) { // If it is a lost game
-                alert("You fought well, but lost :(")
+                alert("You fought well, but lost :(");
             }
         };
 
