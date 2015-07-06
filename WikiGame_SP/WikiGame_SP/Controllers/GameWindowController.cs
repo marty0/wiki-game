@@ -129,7 +129,27 @@ namespace WikiGame.Controllers
                             currentGame.winner = user.UserName;
                             var original = db.MultiplayerGames.Find(currentGame.Id);
                             //db.Entry(original).CurrentValues.SetValues(currentGame);
-                            ViewBag.position = db.MultiplayerGames.Count(p => p.points <= points && p.category == currentGame.category) + 1;
+                            var currentPoints = (1000 - points + (int)(timeElapsed.TotalSeconds)) > 0 ? (1000 - points + (int)(timeElapsed.TotalSeconds)) : 0;
+                            var allMultiplayer = (from game in db.MultiplayerGames
+                              group game by game.winner into g
+                              orderby g.Sum(x => (1000 - x.points + x.timeElapsed) > 0 ? (1000 - x.points + x.timeElapsed) : 0) descending
+                              select new ScoreboardRecord
+                              {
+                                  points = g.Sum(x => (1000 - x.points + x.timeElapsed) > 0 ? (1000 - x.points + x.timeElapsed) : 0),
+                                  userName = g.Key
+                              }).AsEnumerable();
+                            var userPointsMultiplayer = (from o in allMultiplayer where o.userName == user.UserName select o.points);
+                            var userPoints = 0;
+                            if (userPointsMultiplayer.Count() > 0)
+                            {
+                                userPoints = (int)userPointsMultiplayer.ElementAt(0) + currentPoints;
+                            }else{
+                                userPoints = currentPoints;
+                            }
+                            ViewBag.position = (from m in allMultiplayer
+                                            where m.points > userPoints
+                                            select m).Count() + 1;
+                            //ViewBag.position = db.MultiplayerGames.Count(p => p.points <= points && p.category == currentGame.category) + 1;
                             db.SaveChanges();
 
                         }
