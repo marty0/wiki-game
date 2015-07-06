@@ -1,4 +1,4 @@
-﻿@model IEnumerable<WikiGame.Models.ScoreboardRecord>
+﻿@model List<IEnumerable<WikiGame.Models.ScoreboardRecord>>
     @{
         ViewBag.Title = "Index";
     }
@@ -31,7 +31,7 @@
                             </tr>
                         </thead>
                         @{int index = 0;}
-                        @foreach (var user in Model)
+                        @foreach (var user in Model[0])
                         {
                             index++;
                             <tr>
@@ -51,12 +51,51 @@
                     </table>
                 </div>
             </div>
-            <div id="rules">
+            <div id="lastMonth">
                 <div class="col-md-7">
-                    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseLastMonthScores" aria-expanded="false" aria-controls="collapseLastMonthScores">
+                        Scores for the last month
+                    </button>
+                    <div class="collapse" id="collapseLastMonthScores">
+                        <div class="well">
+                            <table class="table table-condensed">
+                                <caption>Scores for the last month</caption>
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>User Name</th>
+                                        <th>Points</th>
+                                    </tr>
+                                </thead>
+                                @{index = 0;}
+                                @foreach (var user in Model[1])
+                                {
+                                    index++;
+                                    <tr>
+                                        <th scope="row">@index</th>
+                                        <td>
+                                            @user.userName
+                                            @if (index == 1)
+                                                    { <img src="@Url.Content("~/Content/images/goldmedal.png")" height="18" /> }
+                                            @if (index == 2)
+                                                    { <img src="@Url.Content("~/Content/images/silvermedal.png")" height="18" /> }
+                                            @if (index == 3)
+                                                    { <img src="@Url.Content("~/Content/images/bronzemedal.png")" height="18" /> }
+                                        </td>
+                                        <td>@user.points</td>
+                                    </tr>
+                            }
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="rules">
+                <div class="col-md-7" style="padding-top:25px;">
+                    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseRules" aria-expanded="false" aria-controls="collapseRules">
                         What are the rules?
                     </button>
-                    <div class="collapse" id="collapseExample">
+                    <div class="collapse" id="collapseRules">
                         <div class="well">
                             <p>
                                 You are given a list of categories from which you can choose. Once the category is selected there are two buttons - for single-player and multiplayer accordingly.

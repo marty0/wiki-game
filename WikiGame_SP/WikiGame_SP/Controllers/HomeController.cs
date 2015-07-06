@@ -3,6 +3,7 @@ using System.Web.Mvc;
 using WikiGame.Models;
 using System.Web.Security;
 using WikiGame_SP.Models;
+using System.Collections.Generic;
 
 namespace WikiGame.Controllers
 {
@@ -19,6 +20,8 @@ namespace WikiGame.Controllers
         {
             MembershipUser user = Membership.GetUser(false);
             var db = new Entities();
+            System.DateTime lastMonth = System.DateTime.Now.AddMonths(-1);
+            List<IEnumerable<ScoreboardRecord>> scoreboards = new List<IEnumerable<ScoreboardRecord>>();
 
             if(user != null){
                 ViewBag.loggedIn = true;
@@ -40,16 +43,36 @@ namespace WikiGame.Controllers
             //                 points = g.Sum(x => x.points),
             //                 userName = g.Key
             //             }).AsEnumerable();
+            //var points = (from game in db.MultiplayerGames
+            //              group game by game.winner into g
+            //              orderby g.Average(x => x.points.Value) ascending
+            //              select new ScoreboardRecord
+            //              {
+            //                  points = g.Average(x => x.points.Value) + g.Average(x => x.timeElapsed),
+            //                  userName = g.Key
+            //              }).AsEnumerable();
             var points = (from game in db.MultiplayerGames
                           group game by game.winner into g
-                          orderby g.Average(x => x.points.Value) ascending
+                          orderby g.Sum(x => (1000 - x.points + x.timeElapsed) > 0 ? (1000 - x.points + x.timeElapsed) : 0) descending
                           select new ScoreboardRecord
                           {
-                              points = g.Average(x => x.points.Value) + g.Average(x => x.timeElapsed),
+                              points = g.Sum(x => (1000 - x.points + x.timeElapsed) > 0 ? (1000 - x.points + x.timeElapsed) : 0),
                               userName = g.Key
                           }).AsEnumerable();
+            scoreboards.Add(points);
 
-            return View(points);
+            var lastMonthPoints = (from game in db.MultiplayerGames
+                                    where game.dateOfGame > lastMonth
+                                    group game by game.winner into g
+                                    orderby g.Sum(x => (1000 - x.points + x.timeElapsed) > 0 ? (1000 - x.points + x.timeElapsed) : 0) descending
+                                    select new ScoreboardRecord
+                                    {
+                                        points = g.Sum(x => (1000 - x.points + x.timeElapsed) > 0 ? (1000 - x.points + x.timeElapsed) : 0),
+                                        userName = g.Key
+                                    }).AsEnumerable();
+            scoreboards.Add(lastMonthPoints);
+
+            return View(scoreboards);
         }
 
     }
