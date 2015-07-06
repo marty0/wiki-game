@@ -17,26 +17,39 @@
             <input type="button" value="Share on Facebook" onclick="shareFB()">
             <div id="fb-root"></div>
             @*<script src="@Url.Content("~/Scripts/jquery-1.9.1.min.js")"></script>
-            <script src="@Url.Content("~/Scripts/bootstrap.min.js")"></script>*@
+                <script src="@Url.Content("~/Scripts/bootstrap.min.js")"></script>*@
             <script src="@Url.Content("~/Scripts/sdk.js")"></script>
-        <script>
-            FB.init({
-                appId: "@ViewBag.appId",
-                cookie: true,
-                xfbml: true,  // parse social plugins on this page
-                version: 'v2.3'
-            });
-            function shareFB() {
-                FB.ui({
-                    method: 'feed',
-                    link: 'https://developers.facebook.com/docs/javascript/reference/FB.ui',
-                    caption: 'My score is @ViewBag.moves. My rank is @ViewBag.position.',
-                    name: 'I Won in WikiGame.',
-                    description: 'Try WikiGame now',
-                    picture: 'http://arborcollective.com/cms/wp-content/uploads/2011/01/you-win.jpg'
-                }, function (response) {  });
-            }
-        </script>
+            <script>
+                $("#wiki_page").click(function (e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+
+                    $("#wiki_page")
+                        .fadeTo(500, 0.2)
+                        .hover(function () {
+                            $(this).fadeTo(500, 1);
+                        }, function () {
+                            $(this).fadeTo(500, 0.2);
+                        });
+                });
+
+                FB.init({
+                    appId: "@ViewBag.appId",
+                    cookie: true,
+                    xfbml: true,  // parse social plugins on this page
+                    version: 'v2.3'
+                });
+                function shareFB() {
+                    FB.ui({
+                        method: 'feed',
+                        link: 'https://developers.facebook.com/docs/javascript/reference/FB.ui',
+                        caption: 'My score is @ViewBag.moves. My rank is @ViewBag.position.',
+                        name: 'I Won in WikiGame.',
+                        description: 'Try WikiGame now',
+                        picture: 'http://arborcollective.com/cms/wp-content/uploads/2011/01/you-win.jpg'
+                    }, function (response) { });
+                }
+            </script>
         </div>
     }
 </div>

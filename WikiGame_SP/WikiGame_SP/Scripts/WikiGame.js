@@ -41,6 +41,11 @@
                 }, 2500);
                 
             } else if (message.Type == 1) { // If it is a lost game
+                $("#wiki_page").click(function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                });
+
                 $("#wiki_page").find("p, i, b, a, h1, img").animate({ "margin-top": "+=" + $(window).height() + "px", "left": "+=100px" }, 1500);
                 setTimeout(function() {
                     alert("You fought well, but lost :(");
