@@ -60,51 +60,6 @@ C:\Users\Chany\Desktop\WikiGame_3\WikiGame_SP\WikiGame_SP\bin\System.Web.WebPage
 C:\Users\Chany\Desktop\WikiGame_3\WikiGame_SP\WikiGame_SP\obj\Debug\WikiGame.csprojResolveAssemblyReference.cache
 C:\Users\Chany\Desktop\WikiGame_3\WikiGame_SP\WikiGame_SP\obj\Debug\WikiGame_SP.dll
 C:\Users\Chany\Desktop\WikiGame_3\WikiGame_SP\WikiGame_SP\obj\Debug\WikiGame_SP.pdb
-E:\University\Master\Second Semester\Софтуерни технологии - проект\wiki-game\WikiGame_SP\WikiGame_SP\bin\WikiGame_SP.dll.config
-E:\University\Master\Second Semester\Софтуерни технологии - проект\wiki-game\WikiGame_SP\WikiGame_SP\bin\WikiGame_SP.dll
-E:\University\Master\Second Semester\Софтуерни технологии - проект\wiki-game\WikiGame_SP\WikiGame_SP\bin\WikiGame_SP.pdb
-E:\University\Master\Second Semester\Софтуерни технологии - проект\wiki-game\WikiGame_SP\WikiGame_SP\bin\EntityFramework.dll
-E:\University\Master\Second Semester\Софтуерни технологии - проект\wiki-game\WikiGame_SP\WikiGame_SP\bin\HtmlAgilityPack.dll
-E:\University\Master\Second Semester\Софтуерни технологии - проект\wiki-game\WikiGame_SP\WikiGame_SP\bin\Microsoft.Web.Infrastructure.dll
-E:\University\Master\Second Semester\Софтуерни технологии - проект\wiki-game\WikiGame_SP\WikiGame_SP\bin\Ninject.dll
-E:\University\Master\Second Semester\Софтуерни технологии - проект\wiki-game\WikiGame_SP\WikiGame_SP\bin\Ninject.Web.Common.dll
-E:\University\Master\Second Semester\Софтуерни технологии - проект\wiki-game\WikiGame_SP\WikiGame_SP\bin\Ninject.Web.Mvc.dll
-E:\University\Master\Second Semester\Софтуерни технологии - проект\wiki-game\WikiGame_SP\WikiGame_SP\bin\System.Web.Helpers.dll
-E:\University\Master\Second Semester\Софтуерни технологии - проект\wiki-game\WikiGame_SP\WikiGame_SP\bin\System.Web.Mvc.dll
-E:\University\Master\Second Semester\Софтуерни технологии - проект\wiki-game\WikiGame_SP\WikiGame_SP\bin\System.Web.Providers.dll
-E:\University\Master\Second Semester\Софтуерни технологии - проект\wiki-game\WikiGame_SP\WikiGame_SP\bin\System.Web.Razor.dll
-E:\University\Master\Second Semester\Софтуерни технологии - проект\wiki-game\WikiGame_SP\WikiGame_SP\bin\System.Web.WebPages.Deployment.dll
-E:\University\Master\Second Semester\Софтуерни технологии - проект\wiki-game\WikiGame_SP\WikiGame_SP\bin\System.Web.WebPages.dll
-E:\University\Master\Second Semester\Софтуерни технологии - проект\wiki-game\WikiGame_SP\WikiGame_SP\bin\System.Web.WebPages.Razor.dll
-E:\University\Master\Second Semester\Софтуерни технологии - проект\wiki-game\WikiGame_SP\WikiGame_SP\bin\WebActivatorEx.dll
-E:\University\Master\Second Semester\Софтуерни технологии - проект\wiki-game\WikiGame_SP\WikiGame_SP\bin\HtmlAgilityPack.pdb
-E:\University\Master\Second Semester\Софтуерни технологии - проект\wiki-game\WikiGame_SP\WikiGame_SP\bin\HtmlAgilityPack.xml
-E:\University\Master\Second Semester\Софтуерни технологии - проект\wiki-game\WikiGame_SP\WikiGame_SP\bin\Ninject.xml
-E:\University\Master\Second Semester\Софтуерни технологии - проект\wiki-game\WikiGame_SP\WikiGame_SP\bin\Ninject.Web.Common.xml
-E:\University\Master\Second Semester\Софтуерни технологии - проект\wiki-game\WikiGame_SP\WikiGame_SP\bin\Ninject.Web.Mvc.xml
-E:\University\Master\Second Semester\Софтуерни технологии - проект\wiki-game\WikiGame_SP\WikiGame_SP\bin\EntityFramework.xml
-E:\University\Master\Second Semester\Софтуерни технологии - проект\wiki-game\WikiGame_SP\WikiGame_SP\bin\System.Web.Helpers.xml
-E:\University\Master\Second Semester\Софтуерни технологии - проект\wiki-game\WikiGame_SP\WikiGame_SP\bin\System.Web.Mvc.xml
-E:\University\Master\Second Semester\Софтуерни технологии - проект\wiki-game\WikiGame_SP\WikiGame_SP\bin\System.Web.Razor.xml
-E:\University\Master\Second Semester\Софтуерни технологии - проект\wiki-game\WikiGame_SP\WikiGame_SP\bin\System.Web.WebPages.xml
-E:\University\Master\Second Semester\Софтуерни технологии - проект\wiki-game\WikiGame_SP\WikiGame_SP\bin\System.Web.WebPages.Deployment.xml
-E:\University\Master\Second Semester\Софтуерни технологии - проект\wiki-game\WikiGame_SP\WikiGame_SP\bin\System.Web.WebPages.Razor.xml
-E:\University\Master\Second Semester\Софтуерни технологии - проект\wiki-game\WikiGame_SP\WikiGame_SP\obj\Debug\WikiGame.csprojResolveAssemblyReference.cache
-E:\University\Master\Second Semester\Софтуерни технологии - проект\wiki-game\WikiGame_SP\WikiGame_SP\obj\Debug\WikiGame_SP.dll
-E:\University\Master\Second Semester\Софтуерни технологии - проект\wiki-game\WikiGame_SP\WikiGame_SP\obj\Debug\WikiGame_SP.pdb
-E:\University\Master\Second Semester\Софтуерни технологии - проект\wiki-game\WikiGame_SP\WikiGame_SP\bin\Microsoft.AspNet.SignalR.Core.dll
-E:\University\Master\Second Semester\Софтуерни технологии - проект\wiki-game\WikiGame_SP\WikiGame_SP\bin\Microsoft.AspNet.SignalR.SystemWeb.dll
-E:\University\Master\Second Semester\Софтуерни технологии - проект\wiki-game\WikiGame_SP\WikiGame_SP\bin\Microsoft.Owin.dll
-E:\University\Master\Second Semester\Софтуерни технологии - проект\wiki-game\WikiGame_SP\WikiGame_SP\bin\Microsoft.Owin.Host.SystemWeb.dll
-E:\University\Master\Second Semester\Софтуерни технологии - проект\wiki-game\WikiGame_SP\WikiGame_SP\bin\Microsoft.Owin.Security.dll
-E:\University\Master\Second Semester\Софтуерни технологии - проект\wiki-game\WikiGame_SP\WikiGame_SP\bin\Newtonsoft.Json.dll
-E:\University\Master\Second Semester\Софтуерни технологии - проект\wiki-game\WikiGame_SP\WikiGame_SP\bin\Owin.dll
-E:\University\Master\Second Semester\Софтуерни технологии - проект\wiki-game\WikiGame_SP\WikiGame_SP\bin\Microsoft.AspNet.SignalR.Core.xml
-E:\University\Master\Second Semester\Софтуерни технологии - проект\wiki-game\WikiGame_SP\WikiGame_SP\bin\Microsoft.AspNet.SignalR.SystemWeb.xml
-E:\University\Master\Second Semester\Софтуерни технологии - проект\wiki-game\WikiGame_SP\WikiGame_SP\bin\Microsoft.Owin.xml
-E:\University\Master\Second Semester\Софтуерни технологии - проект\wiki-game\WikiGame_SP\WikiGame_SP\bin\Microsoft.Owin.Host.SystemWeb.xml
-E:\University\Master\Second Semester\Софтуерни технологии - проект\wiki-game\WikiGame_SP\WikiGame_SP\bin\Microsoft.Owin.Security.xml
-E:\University\Master\Second Semester\Софтуерни технологии - проект\wiki-game\WikiGame_SP\WikiGame_SP\bin\Newtonsoft.Json.xml
 C:\Users\Chany\Documents\Visual Studio 2012\Projects\WikiGame\wiki-game\WikiGame_SP\WikiGame_SP\bin\WikiGame_SP.dll
 C:\Users\Chany\Documents\Visual Studio 2012\Projects\WikiGame\wiki-game\WikiGame_SP\WikiGame_SP\bin\WikiGame_SP.pdb
 C:\Users\Chany\Documents\Visual Studio 2012\Projects\WikiGame\wiki-game\WikiGame_SP\WikiGame_SP\bin\EntityFramework.dll
@@ -197,3 +152,50 @@ C:\D\University\Masters\Софтуерни технологии - проект\w
 C:\D\University\Masters\Софтуерни технологии - проект\wiki-game\WikiGame_SP\WikiGame_SP\obj\Debug\WikiGame.csprojResolveAssemblyReference.cache
 C:\D\University\Masters\Софтуерни технологии - проект\wiki-game\WikiGame_SP\WikiGame_SP\obj\Debug\WikiGame_SP.dll
 C:\D\University\Masters\Софтуерни технологии - проект\wiki-game\WikiGame_SP\WikiGame_SP\obj\Debug\WikiGame_SP.pdb
+E:\University\Master\Second Semester\Софтуерни технологии - проект\wiki-game\WikiGame_SP\WikiGame_SP\bin\WikiGame_SP.dll.config
+E:\University\Master\Second Semester\Софтуерни технологии - проект\wiki-game\WikiGame_SP\WikiGame_SP\bin\WikiGame_SP.dll
+E:\University\Master\Second Semester\Софтуерни технологии - проект\wiki-game\WikiGame_SP\WikiGame_SP\bin\WikiGame_SP.pdb
+E:\University\Master\Second Semester\Софтуерни технологии - проект\wiki-game\WikiGame_SP\WikiGame_SP\bin\EntityFramework.dll
+E:\University\Master\Second Semester\Софтуерни технологии - проект\wiki-game\WikiGame_SP\WikiGame_SP\bin\Facebook.dll
+E:\University\Master\Second Semester\Софтуерни технологии - проект\wiki-game\WikiGame_SP\WikiGame_SP\bin\HtmlAgilityPack.dll
+E:\University\Master\Second Semester\Софтуерни технологии - проект\wiki-game\WikiGame_SP\WikiGame_SP\bin\Microsoft.AspNet.SignalR.Core.dll
+E:\University\Master\Second Semester\Софтуерни технологии - проект\wiki-game\WikiGame_SP\WikiGame_SP\bin\Microsoft.AspNet.SignalR.SystemWeb.dll
+E:\University\Master\Second Semester\Софтуерни технологии - проект\wiki-game\WikiGame_SP\WikiGame_SP\bin\Microsoft.Owin.dll
+E:\University\Master\Second Semester\Софтуерни технологии - проект\wiki-game\WikiGame_SP\WikiGame_SP\bin\Microsoft.Owin.Host.SystemWeb.dll
+E:\University\Master\Second Semester\Софтуерни технологии - проект\wiki-game\WikiGame_SP\WikiGame_SP\bin\Microsoft.Owin.Security.dll
+E:\University\Master\Second Semester\Софтуерни технологии - проект\wiki-game\WikiGame_SP\WikiGame_SP\bin\Microsoft.Web.Infrastructure.dll
+E:\University\Master\Second Semester\Софтуерни технологии - проект\wiki-game\WikiGame_SP\WikiGame_SP\bin\Newtonsoft.Json.dll
+E:\University\Master\Second Semester\Софтуерни технологии - проект\wiki-game\WikiGame_SP\WikiGame_SP\bin\Ninject.dll
+E:\University\Master\Second Semester\Софтуерни технологии - проект\wiki-game\WikiGame_SP\WikiGame_SP\bin\Ninject.Web.Common.dll
+E:\University\Master\Second Semester\Софтуерни технологии - проект\wiki-game\WikiGame_SP\WikiGame_SP\bin\Ninject.Web.Mvc.dll
+E:\University\Master\Second Semester\Софтуерни технологии - проект\wiki-game\WikiGame_SP\WikiGame_SP\bin\Owin.dll
+E:\University\Master\Second Semester\Софтуерни технологии - проект\wiki-game\WikiGame_SP\WikiGame_SP\bin\System.Web.Helpers.dll
+E:\University\Master\Second Semester\Софтуерни технологии - проект\wiki-game\WikiGame_SP\WikiGame_SP\bin\System.Web.Mvc.dll
+E:\University\Master\Second Semester\Софтуерни технологии - проект\wiki-game\WikiGame_SP\WikiGame_SP\bin\System.Web.Providers.dll
+E:\University\Master\Second Semester\Софтуерни технологии - проект\wiki-game\WikiGame_SP\WikiGame_SP\bin\System.Web.Razor.dll
+E:\University\Master\Second Semester\Софтуерни технологии - проект\wiki-game\WikiGame_SP\WikiGame_SP\bin\System.Web.WebPages.Deployment.dll
+E:\University\Master\Second Semester\Софтуерни технологии - проект\wiki-game\WikiGame_SP\WikiGame_SP\bin\System.Web.WebPages.dll
+E:\University\Master\Second Semester\Софтуерни технологии - проект\wiki-game\WikiGame_SP\WikiGame_SP\bin\System.Web.WebPages.Razor.dll
+E:\University\Master\Second Semester\Софтуерни технологии - проект\wiki-game\WikiGame_SP\WikiGame_SP\bin\WebActivatorEx.dll
+E:\University\Master\Second Semester\Софтуерни технологии - проект\wiki-game\WikiGame_SP\WikiGame_SP\bin\Facebook.xml
+E:\University\Master\Second Semester\Софтуерни технологии - проект\wiki-game\WikiGame_SP\WikiGame_SP\bin\HtmlAgilityPack.pdb
+E:\University\Master\Second Semester\Софтуерни технологии - проект\wiki-game\WikiGame_SP\WikiGame_SP\bin\HtmlAgilityPack.xml
+E:\University\Master\Second Semester\Софтуерни технологии - проект\wiki-game\WikiGame_SP\WikiGame_SP\bin\Microsoft.AspNet.SignalR.Core.xml
+E:\University\Master\Second Semester\Софтуерни технологии - проект\wiki-game\WikiGame_SP\WikiGame_SP\bin\Microsoft.AspNet.SignalR.SystemWeb.xml
+E:\University\Master\Second Semester\Софтуерни технологии - проект\wiki-game\WikiGame_SP\WikiGame_SP\bin\Microsoft.Owin.xml
+E:\University\Master\Second Semester\Софтуерни технологии - проект\wiki-game\WikiGame_SP\WikiGame_SP\bin\Microsoft.Owin.Host.SystemWeb.xml
+E:\University\Master\Second Semester\Софтуерни технологии - проект\wiki-game\WikiGame_SP\WikiGame_SP\bin\Microsoft.Owin.Security.xml
+E:\University\Master\Second Semester\Софтуерни технологии - проект\wiki-game\WikiGame_SP\WikiGame_SP\bin\Newtonsoft.Json.xml
+E:\University\Master\Second Semester\Софтуерни технологии - проект\wiki-game\WikiGame_SP\WikiGame_SP\bin\Ninject.xml
+E:\University\Master\Second Semester\Софтуерни технологии - проект\wiki-game\WikiGame_SP\WikiGame_SP\bin\Ninject.Web.Common.xml
+E:\University\Master\Second Semester\Софтуерни технологии - проект\wiki-game\WikiGame_SP\WikiGame_SP\bin\Ninject.Web.Mvc.xml
+E:\University\Master\Second Semester\Софтуерни технологии - проект\wiki-game\WikiGame_SP\WikiGame_SP\bin\EntityFramework.xml
+E:\University\Master\Second Semester\Софтуерни технологии - проект\wiki-game\WikiGame_SP\WikiGame_SP\bin\System.Web.Helpers.xml
+E:\University\Master\Second Semester\Софтуерни технологии - проект\wiki-game\WikiGame_SP\WikiGame_SP\bin\System.Web.Mvc.xml
+E:\University\Master\Second Semester\Софтуерни технологии - проект\wiki-game\WikiGame_SP\WikiGame_SP\bin\System.Web.Razor.xml
+E:\University\Master\Second Semester\Софтуерни технологии - проект\wiki-game\WikiGame_SP\WikiGame_SP\bin\System.Web.WebPages.xml
+E:\University\Master\Second Semester\Софтуерни технологии - проект\wiki-game\WikiGame_SP\WikiGame_SP\bin\System.Web.WebPages.Deployment.xml
+E:\University\Master\Second Semester\Софтуерни технологии - проект\wiki-game\WikiGame_SP\WikiGame_SP\bin\System.Web.WebPages.Razor.xml
+E:\University\Master\Second Semester\Софтуерни технологии - проект\wiki-game\WikiGame_SP\WikiGame_SP\obj\Debug\WikiGame.csprojResolveAssemblyReference.cache
+E:\University\Master\Second Semester\Софтуерни технологии - проект\wiki-game\WikiGame_SP\WikiGame_SP\obj\Debug\WikiGame_SP.dll
+E:\University\Master\Second Semester\Софтуерни технологии - проект\wiki-game\WikiGame_SP\WikiGame_SP\obj\Debug\WikiGame_SP.pdb

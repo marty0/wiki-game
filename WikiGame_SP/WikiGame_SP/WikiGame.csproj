@@ -277,7 +277,6 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Content\bootstrap.css.map" />
-    <Content Include="fonts\font-awesome-4.2.0\.DS_Store" />
     <Content Include="fonts\font-awesome-4.2.0\fonts\fontawesome-webfont.eot" />
     <Content Include="fonts\font-awesome-4.2.0\fonts\fontawesome-webfont.ttf" />
     <Content Include="fonts\font-awesome-4.2.0\fonts\fontawesome-webfont.woff" />
@@ -308,6 +307,7 @@
     <Content Include="fonts\font-awesome-4.2.0\scss\_spinning.scss" />
     <Content Include="fonts\font-awesome-4.2.0\scss\_stacked.scss" />
     <Content Include="fonts\font-awesome-4.2.0\scss\_variables.scss" />
+    <None Include="Properties\PublishProfiles\Local.pubxml" />
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
